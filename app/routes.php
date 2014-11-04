@@ -20,3 +20,8 @@ Route::get('/contact', function()
 {
 	return 'Contact page';
 });
+
+Route::get('/test-page', function()
+{
+	return 'Created Nov 4, 2014 testing push from server and if database.php is ignored";
+});
