@@ -13,5 +13,5 @@
 
 
 
-Route::controller('/','homeController');
+Route::controller('/','HomeController');
 
