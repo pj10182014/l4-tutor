@@ -11,16 +11,18 @@
 		<meta content="This is a Metronic Frontend test" name="description"/>
 		<meta content="Dingding Pan" name="author"/>
 
-		@yield('css')
+		@include('layouts.css')
+
 		<!-- favicon icon -->
 		<link rel="shortcut icon" href="assets/favicon.ico"/>
 
 	</head>
 
-		@yield('contents')
+	<body>
+
 		@include('layouts.footer')
-		@yield('js')
+		@include('layouts.footer-javascripts')
 		
 	</body>
-<!-- END BODY -->
+
 </html>
