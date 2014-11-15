@@ -11,7 +11,5 @@
 |
 */
 
-
-
+print App::environment();
 Route::controller('/','HomeController');
-
