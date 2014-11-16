@@ -10,6 +10,7 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-
-print App::environment();
+//print $password = Hash::make('password');
+//print App::environment();
+Route::controller('student','StudentController');
 Route::controller('/','HomeController');
