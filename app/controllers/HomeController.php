@@ -30,6 +30,18 @@ class HomeController extends BaseController {
         return View::make('home');
     }
 
+    public function postSignup()
+    {
+        if ($_POST)
+        {
+            var_dump($_POST);
+        }
+        else
+        {
+            echo 'error';
+        }
+    }
+
 }
 
 ?>
