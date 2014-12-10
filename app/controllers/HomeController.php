@@ -19,10 +19,11 @@ class HomeController extends BaseController {
 
     public function postLogin(){
 
-        if (Auth::attempt(array('user_name' => $_POST['username'], 'password' => $_POST['password'])))
+        if (Auth::attempt(array('user_name' => $_POST['username'], 'password' => $_POST['password'], 'activated' => 1)))
         {
             return Redirect::intended('/');
         }
+        return 'Please activate your account first';
     }
 
     public function getHome()
@@ -32,14 +33,34 @@ class HomeController extends BaseController {
 
     public function postSignup()
     {
-        if ($_POST)
+        $user_name = Input::get('username');
+        $email = Input::get('email');
+        $password = Input::get('password');
+
+
+        $code = str_random(60);
+
+        $user = User::create(array(
+                'user_name' => $user_name,
+                'email'     => $email,
+                'password'  => Hash::make($password),
+                'code'      => $code,
+                'activated' => 0
+            ));
+
+        if ($user->save())
         {
-            var_dump($_POST);
+            Mail::send('email.confirm', array('link' => URL::action('HomeController@postSignup', $code), 'username' => $user_name), function($m) use($user){
+                    $m->to($user->email, $user->username)->subject('Activation Email');
+            });
         }
-        else
-        {
-            echo 'error';
-        }
+        return Redirect::action('HomeController@getLogin');
+    }
+
+    public function getLogout()
+    {
+        Auth::logout();
+        return Redirect::action('HomeController@getLogin');
     }
 
 }

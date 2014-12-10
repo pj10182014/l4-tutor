@@ -20,7 +20,8 @@ class CreateUsersTable extends Migration {
 			$table->string('phone',20)->unique();
 			$table->string('firstname',20);
 			$table->string('lastname',20);
-			$table->boolean('activeted')->default(0);
+			$table->boolean('activated')->default(0);
+			$table->string('code',255);
 			$table->integer('rid')->default(1);
 			$table->timestamps();
 			
