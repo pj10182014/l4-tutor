@@ -3,7 +3,7 @@
 class HomeController extends BaseController {
 
     public function getIndex()
-    {
+    {   
         if(Auth::check()){
             return $this->getHome();        
         }else{
@@ -14,12 +14,14 @@ class HomeController extends BaseController {
    
     public function getLogin()
     {
-        return View::make('index');
+        return View::make('login');
     }
 
     public function postLogin(){
+    
+        $remember = array_key_exists('remember',$_POST);
 
-        if (Auth::attempt(array('user_name' => $_POST['username'], 'password' => $_POST['password'], 'activated' => 1)))
+        if (Auth::attempt(array('user_name' => $_POST['username'], 'password' => $_POST['password'], 'activated' => 1),$remember))
         {
             return Redirect::intended('/');
         }
@@ -28,7 +30,7 @@ class HomeController extends BaseController {
 
     public function getHome()
     {
-        return View::make('home');
+        return View::make('index');
     }
 
     public function postSignup()
