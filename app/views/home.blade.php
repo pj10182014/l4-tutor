@@ -1,1 +1,2 @@
-hehehe I am in here
+hehehe I am in here 
+<a href="{{action('HomeController@getLogout')}}">logout</a>

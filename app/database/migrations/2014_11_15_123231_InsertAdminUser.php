@@ -24,7 +24,7 @@ class InsertAdminUser extends Migration {
 					'phone'=>'7783180819',
 					'firstname'=>'Admin',
 					'lastname'=>'Mr',
-					'activeted'=>1,
+					'activated'=>1,
 					'rid'=>1,
 					'created_at'=>date('Y-m-d H:i:s'),
 					'updated_at'=> date('Y-m-d H:i:s'),
