@@ -4,6 +4,6 @@
 
 <p>
 	-----<br/>
-	<a href="{{$link}}">{{$link}}</a><br/>
+	<a href="{{$link}}">Active my account.</a><br/>
 	-----
 </p>

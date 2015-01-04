@@ -41,7 +41,10 @@ class HomeController extends BaseController {
 
 
         $code = str_random(60);
-
+        $url = URL::action('HomeController@getActive');
+        $url .= "?code=".$code;
+        $url .= "&user=".$user_name;
+        
         $user = User::create(array(
                 'user_name' => $user_name,
                 'email'     => $email,
@@ -52,11 +55,28 @@ class HomeController extends BaseController {
 
         if ($user->save())
         {
-            Mail::send('email.confirm', array('link' => URL::action('HomeController@postSignup', $code), 'username' => $user_name), function($m) use($user){
+            Mail::send('email.confirm', array('link' => $url, 'username' => $user_name), function($m) use($user){
                     $m->to($user->email, $user->username)->subject('Activation Email');
             });
         }
         return Redirect::action('HomeController@getLogin');
+    }
+
+    public function getActive()
+    {
+        $active_code = $_GET['code'];
+        $user_name = $_GET['user'];      
+
+        $user = User::where('user_name','=',$user_name)->first();
+        if($user->code == $active_code){
+            $user->code = '';
+            $user->activated = 1;
+            $user->save();
+
+            Auth::login($user);
+            
+            return Redirect::intended('/');
+        }
     }
 
     public function getLogout()
