@@ -25,7 +25,7 @@ class HomeController extends BaseController {
         {
             return Redirect::intended('/');
         }
-        return 'Please activate your account first';
+        return 'Error login.  Please check your username / password or make sure you have actived your account.  Thank you';
     }
 
     public function getHome()
@@ -41,9 +41,9 @@ class HomeController extends BaseController {
 
 
         $code = str_random(60);
-        $url = URL::action('HomeController@getActive');
-        $url .= "?code=".$code;
-        $url .= "&user=".$user_name;
+        $url_activate = URL::action('HomeController@getActive');
+        $url_activate .= "?code=".$code;
+        $url_activate .= "&user=".$user_name;
         
         $user = User::create(array(
                 'user_name' => $user_name,
@@ -55,11 +55,43 @@ class HomeController extends BaseController {
 
         if ($user->save())
         {
-            Mail::send('email.confirm', array('link' => $url, 'username' => $user_name), function($m) use($user){
+            Mail::send('email.confirm', array('link' => $url_activate, 'username' => $user_name), function($m) use($user){
                     $m->to($user->email, $user->username)->subject('Activation Email');
             });
         }
-        return Redirect::action('HomeController@getLogin');
+        return Redirect::action('HomeController@getMailActive');
+    }
+
+    public function getMailActive()
+    {
+        return View::make('mailActive');
+    }
+
+    public function getMailResend()
+    {
+        $email = Input::get('email');
+
+        $user = User::where('email', '=', $email)->where('activated', '=', '0')->first();
+        $user_actived = User::where('email', '=', $email)->where('activated', '=', '1')->first();
+        $url_login = URL::action('HomeController@getLogin');
+
+        if ($user_actived) {
+            return 'You have already actived your account, please ' . "<a href='$url_login'>login</a>";
+        }
+
+        if($user){
+            $url_activate = URL::action('HomeController@getActive');
+            $url_activate .= "?code=".$user->code;
+            $url_activate .= "&user=".$user->user_name;
+
+            Mail::send('email.confirm', array('link' => $url_activate, 'username' => $user->user_name), function($m) use($user){
+                    $m->to($user->email, $user->username)->subject('Activation Email');
+            });
+
+            return 'Email resent successfully please check your inbox / junkbox';
+        }
+
+        return 'Email not valid in the database.  Please ' . "<a href='$url_login'>register</a>" . ' or check for typo.  Thank you.';
     }
 
     public function getActive()
@@ -75,7 +107,7 @@ class HomeController extends BaseController {
 
             Auth::login($user);
             
-            return Redirect::intended('/');
+            return Redirect::intended('/')->with('global', 'account actived');
         }
     }
 
