@@ -10,7 +10,7 @@ class HomeController extends BaseController {
     public function getIndex()
     {   
         if(Auth::check()){
-            return $this->getHome();        
+            return $this->getHome(); 
         }else{
             return $this->getLogin();
         }
