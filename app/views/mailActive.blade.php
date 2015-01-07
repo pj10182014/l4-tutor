@@ -7,5 +7,8 @@
 <form action="{{URL::action('HomeController@getMailResend')}}">
 	<input type="text" name="email" placeholder="Email">
 	<input type="submit">
+	@if($errors->has('email'))
+		<p style="color:#FF0000;">{{ $errors->first('email') }}</p>
+	@endif
 </form>
 @stop

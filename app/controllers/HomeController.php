@@ -2,6 +2,11 @@
 
 class HomeController extends BaseController {
 
+
+    /* 
+    ***     Route: '/'
+    ***     Check if user is authorized or not
+     */
     public function getIndex()
     {   
         if(Auth::check()){
@@ -11,12 +16,19 @@ class HomeController extends BaseController {
         }
     }
 
-   
+   /*
+   ***      Route: '/login'
+   ***      login page
+    */
     public function getLogin()
     {
         return View::make('login');
     }
 
+    /*
+    ***     Route: '/login'
+    ***     post login page
+     */
     public function postLogin(){
     
         $remember = array_key_exists('remember',$_POST);
@@ -28,11 +40,20 @@ class HomeController extends BaseController {
         return 'Error login.  Please check your username / password or make sure you have actived your account.  Thank you';
     }
 
+    /*
+    ***     Route: '/'
+    ***     homepage
+     */
     public function getHome()
     {
         return View::make('index');
     }
 
+
+    /*
+    ***     Route: '/'
+    ***     post register / sign up page
+     */
     public function postSignup()
     {
         $user_name = Input::get('username');
@@ -62,6 +83,13 @@ class HomeController extends BaseController {
         return Redirect::action('HomeController@getMailActive');
     }
 
+    /*
+    ***     Route: 'mail-active'
+    ***     after sign up, this page shows up to tell users to check the activation email or resend email
+    ***     if email submit is actived 'account already actived message shows'
+    ***     if email submit is not actived 'email will resend'
+     */
+
     public function getMailActive()
     {
         return View::make('mailActive');
@@ -71,12 +99,23 @@ class HomeController extends BaseController {
     {
         $email = Input::get('email');
 
+        $v = Validator::make(Input::all(), array(
+                'email'                     => 'required|email'
+            ));
+
+        if ($v->fails())
+        {
+            return Redirect::action('HomeController@getMailActive')
+                ->withErrors($v);
+        }
+
         $user = User::where('email', '=', $email)->where('activated', '=', '0')->first();
         $user_actived = User::where('email', '=', $email)->where('activated', '=', '1')->first();
         $url_login = URL::action('HomeController@getLogin');
 
         if ($user_actived) {
-            return 'You have already actived your account, please ' . "<a href='$url_login'>login</a>";
+            return Redirect::action('HomeController@getMailActive')
+                ->with('global', 'You have already actived your account, please ' . "<a href='$url_login'>login</a>");
         }
 
         if($user){
@@ -88,12 +127,18 @@ class HomeController extends BaseController {
                     $m->to($user->email, $user->username)->subject('Activation Email');
             });
 
-            return 'Email resent successfully please check your inbox / junkbox';
+            return Redirect::action('HomeController@getMailActive')
+                ->with('global', 'Email resent successfully please check your inbox / junkbox');
         }
 
         return 'Email not valid in the database.  Please ' . "<a href='$url_login'>register</a>" . ' or check for typo.  Thank you.';
     }
 
+
+    /*
+    ***     Route: 'active?code=NFAOtrmqIpQnr5ccpmifAq4TVu0t0DaOFThcmb0aCzY10hzkVLwNQwk7oLAU&user=et1103'
+    ***     activate link in email clicked with active this function
+     */
     public function getActive()
     {
         $active_code = $_GET['code'];
@@ -111,6 +156,9 @@ class HomeController extends BaseController {
         }
     }
 
+    /*
+    ***     Route: 'logout'
+     */
     public function getLogout()
     {
         Auth::logout();
