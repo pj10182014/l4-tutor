@@ -100,7 +100,7 @@ class HomeController extends BaseController {
         $email = Input::get('email');
 
         $v = Validator::make(Input::all(), array(
-                'email'                     => 'required|email'
+                'email' => 'required|email'
             ));
 
         if ($v->fails())
@@ -153,6 +153,8 @@ class HomeController extends BaseController {
             Auth::login($user);
             
             return Redirect::intended('/')->with('global', 'account actived');
+        }else{
+
         }
     }
 

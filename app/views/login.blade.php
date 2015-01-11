@@ -88,7 +88,7 @@
 	<!-- END FORGOT PASSWORD FORM -->
 
 	<!-- BEGIN REGISTRATION FORM -->
-	<form class="register-form" action="http://localhost/l4-tutor/public/signup" method="post">
+	<form class="register-form" action="signup" method="POST">
 		<h3>Sign Up</h3>
 		<p>
 			 Enter your account details below:
