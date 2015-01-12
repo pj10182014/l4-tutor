@@ -150,4 +150,13 @@
 @include('layouts.core-plugin')
 @include('layouts.login-page-level-js')
 @include('layouts.login-end-js')
+<script>
+	$(document).ready(function() {
+		var pathname = window.location.href;
+		var n = pathname.indexOf("#register");
+		if(n > 0){
+			$('#register-btn').click();
+		}	
+	});
+</script>
 @stop

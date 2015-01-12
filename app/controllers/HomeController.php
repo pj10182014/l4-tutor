@@ -99,39 +99,29 @@ class HomeController extends BaseController {
     {
         $email = Input::get('email');
 
-        $v = Validator::make(Input::all(), array(
-                'email' => 'required|email'
-            ));
-
-        if ($v->fails())
-        {
-            return Redirect::action('HomeController@getMailActive')
-                ->withErrors($v);
-        }
-
-        $user = User::where('email', '=', $email)->where('activated', '=', '0')->first();
-        $user_actived = User::where('email', '=', $email)->where('activated', '=', '1')->first();
-        $url_login = URL::action('HomeController@getLogin');
-
-        if ($user_actived) {
-            return Redirect::action('HomeController@getMailActive')
-                ->with('global', 'You have already actived your account, please ' . "<a href='$url_login'>login</a>");
-        }
+        $user = User::where('email', '=', $email)->first();
 
         if($user){
-            $url_activate = URL::action('HomeController@getActive');
-            $url_activate .= "?code=".$user->code;
-            $url_activate .= "&user=".$user->user_name;
+            if($user->activated != 1){
+                $url_activate = URL::action('HomeController@getActive');
+                $url_activate .= "?code=".$user->code;
+                $url_activate .= "&user=".$user->user_name;
 
-            Mail::send('email.confirm', array('link' => $url_activate, 'username' => $user->user_name), function($m) use($user){
-                    $m->to($user->email, $user->username)->subject('Activation Email');
-            });
+                Mail::send('email.confirm', array('link' => $url_activate, 'username' => $user->user_name), function($m) use($user){
+                        $m->to($user->email, $user->username)->subject('Activation Email');
+                });
 
-            return Redirect::action('HomeController@getMailActive')
-                ->with('global', 'Email resent successfully please check your inbox / junkbox');
+                return Redirect::action('HomeController@getMailActive')
+                    ->with('global', 'Email resent successfully please check your inbox / junkbox');
+            }else{
+                return Redirect::action('HomeController@getMailActive')
+                ->with('global', 'You have already actived your account, please ' . "<a href='/login'>login</a>");       
+            }
+        }else{
+            return 'Email not valid in the database.  Please ' . "<a href='login#register'>register</a>" . ' or check for typo.  Thank you.';
         }
 
-        return 'Email not valid in the database.  Please ' . "<a href='$url_login'>register</a>" . ' or check for typo.  Thank you.';
+        
     }
 
 
