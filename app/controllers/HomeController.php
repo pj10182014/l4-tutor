@@ -92,7 +92,12 @@ class HomeController extends BaseController {
 
     public function getMailActive()
     {
-        return View::make('mailActive');
+        $mailActiveContent = 
+        '<p>Please check your email inbox / junkbox for the activation email.</p>
+        <p>Please enter your email again to resend the activation email.</p>
+        <p>*Might Take a few minutes to receive the activation mail*</p>';
+
+        return View::make('mailActive', array('mailActiveContent' => $mailActiveContent));
     }
 
     public function getMailResend()
@@ -110,11 +115,10 @@ class HomeController extends BaseController {
                         $m->to($user->email, $user->username)->subject('Activation Email');
                 });
 
-                return Redirect::action('HomeController@getMailActive')
-                    ->with('global', 'Email resent successfully please check your inbox / junkbox');
+                return View::make('mailActive', array('mailActiveContent' => 'Email resent successfully please check your inbox / junkbox'));
+
             }else{
-                return Redirect::action('HomeController@getMailActive')
-                ->with('global', 'You have already actived your account, please ' . "<a href='/login'>login</a>");       
+                return View::make('mailActive', array('mailActiveContent' => 'You have already actived your account, please ' . "<a href='/login'>login</a>"));
             }
         }else{
             return 'Email not valid in the database.  Please ' . "<a href='login#register'>register</a>" . ' or check for typo.  Thank you.';
