@@ -100,7 +100,6 @@ class HomeController extends BaseController {
         $email = Input::get('email');
 
         $user = User::where('email', '=', $email)->first();
-
         if($user){
             if($user->activated != 1){
                 $url_activate = URL::action('HomeController@getActive');
