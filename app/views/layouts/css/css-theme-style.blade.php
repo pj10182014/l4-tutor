@@ -1,4 +1,3 @@
-
 <!-- BEGIN THEME STYLES -->
 {{ HTML::style('assets/global/css/components.css'); }}
 {{ HTML::style('assets/global/css/plugins.css'); }}

@@ -1,7 +1,7 @@
 @extends('layouts.master')
-@include('layouts.global-mandatory-css')
-@include('layouts.theme-styles')
-@include('layouts.login-css')
+@include('layouts.css.css-global-mandatory')
+@include('layouts.css.css-theme-style')
+@include('layouts.css.css-login-page-level-style')
 @section('contents')
 <body class="page-header-fixed page-quick-sidebar-over-content">
 	@include('layouts.banner')
