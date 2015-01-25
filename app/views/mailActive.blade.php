@@ -11,11 +11,14 @@
 		<div class="page-content-wrapper">
 			<div class="page-content" style="min-height:1023px">
 				{{ $mailActiveContent }}
-				<form action="{{URL::action('HomeController@getMailResend')}}">
+				<form action="{{URL::action('HomeController@getMailResend')}}" novalidate="novalidate">
 					<input type="text" name="email" placeholder="Email">
 					<input type="submit">
 				</form>
 			</div>
 		</div>
 	</div>
+@stop
+@section('js')
+@include('layouts.login-page-level-js')
 @stop

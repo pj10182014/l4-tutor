@@ -121,7 +121,7 @@ class HomeController extends BaseController {
                 return View::make('mailActive', array('mailActiveContent' => 'You have already actived your account, please ' . "<a href='/login'>login</a>"));
             }
         }else{
-            return 'Email not valid in the database.  Please ' . "<a href='login#register'>register</a>" . ' or check for typo.  Thank you.';
+            return View::make('mailActive', array('mailActiveContent' => 'Email not valid in the database.  Please ' . "<a href='login#register'>register</a>" . ' or check for typo.  Thank you.'));
         }
 
         
