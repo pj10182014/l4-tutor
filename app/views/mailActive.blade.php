@@ -11,14 +11,23 @@
 		<div class="page-content-wrapper">
 			<div class="page-content" style="min-height:1023px">
 				{{ $mailActiveContent }}
-				<form action="{{URL::action('HomeController@getMailResend')}}" novalidate="novalidate">
-					<input type="text" name="email" placeholder="Email">
+				<form action="{{URL::action('HomeController@getMailResend')}}" id="email-resubmission">
+					<input type="text" name="email" type="email" placeholder="Email">
 					<input type="submit">
 				</form>
 			</div>
 		</div>
 	</div>
 @stop
-@section('js')
 
+@section('js')
+@include('layouts.js.js-core-plugin')
+@include('layouts.js.js-login-page-level-plugin')
+@include('layouts.js.js-page-level-plugin')
+@include('layouts.js.js-page-level-script')
+<script>
+	$(document).ready(function(){
+		$("#email-resubmission").validate();
+	});
+</script>
 @stop
