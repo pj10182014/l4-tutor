@@ -150,6 +150,7 @@
 @include('layouts.js.js-core-plugin')
 @include('layouts.js.js-login-page-level-plugin')
 @include('layouts.js.js-login-page-level-script')
+@include('layouts.js.js-page-level-script')
 @include('layouts.js.js-login-init-script')
 <script>
 	$(document).ready(function() {
