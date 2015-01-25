@@ -1,8 +1,8 @@
 @extends('layouts.master')
 @section('css')
-@include('layouts.global-mandatory-css')
-@include('layouts.theme-styles')
-@include('layouts.login-css')
+@include('layouts.css.css-global-mandatory')
+@include('layouts.css.css-theme-style')
+@include('layouts.css.css-login-page-level-style')
 @stop
 @section('contents')
 <body class="login">
@@ -147,9 +147,10 @@
 <!-- END LOGIN -->
 @stop
 @section('js')
-@include('layouts.core-plugin')
-@include('layouts.login-page-level-js')
-@include('layouts.login-end-js')
+@include('layouts.js.js-core-plugin')
+@include('layouts.js.js-login-page-level-plugin')
+@include('layouts.js.js-login-page-level-script')
+@include('layouts.js.js-login-init-script')
 <script>
 	$(document).ready(function() {
 		var pathname = window.location.href;
