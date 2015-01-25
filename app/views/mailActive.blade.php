@@ -20,5 +20,5 @@
 	</div>
 @stop
 @section('js')
-@include('layouts.login-page-level-js')
+
 @stop
