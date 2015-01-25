@@ -27,7 +27,14 @@
 @include('layouts.js.js-page-level-script')
 <script>
 	$(document).ready(function(){
-		$("#email-resubmission").validate();
+		$("#email-resubmission").validate({
+			rules: {
+				email: {
+					required: true,
+					email: true
+				}
+			}
+		});
 	});
 </script>
 @stop
