@@ -92,45 +92,52 @@ class HomeController extends BaseController {
 
     public function getMailActive()
     {
-        $mailActiveContent = 
-        '<p>Please check your email inbox / junkbox for the activation email.</p>
-        <p>Please enter your email again to resend the activation email.</p>
-        <p>*Might Take a few minutes to receive the activation mail*</p>';
+      $mailActiveContent = 
+      '<p>Please check your email inbox / junkbox for the activation email.</p>
+      <p>Please enter your email again to resend the activation email.</p>
+      <p>*Might Take a few minutes to receive the activation mail*</p>';
 
-        return View::make('mailActive', array('mailActiveContent' => $mailActiveContent));
+      return View::make('mailActive', array('mailActiveContent' => $mailActiveContent));
     }
 
     public function getMailResend()
     {
-        $email = Input::get('email');
+      $email = Input::get('email');
 
-        $user = User::where('email', '=', $email)->first();
-        if($user){
-            if($user->activated != 1){
-                $url_activate = URL::action('HomeController@getActive');
-                $url_activate .= "?code=".$user->code;
-                $url_activate .= "&user=".$user->user_name;
+      $user = User::where('email', '=', $email)->first();
+      if($user)
+      {
+        if($user->activated != 1)
+        {
+          $url_activate = URL::action('HomeController@getActive');
+          $url_activate .= "?code=".$user->code;
+          $url_activate .= "&user=".$user->user_name;
 
-                Mail::send('email.confirm', array('link' => $url_activate, 'username' => $user->user_name), function($m) use($user){
-                        $m->to($user->email, $user->username)->subject('Activation Email');
-                });
+          Mail::send('email.confirm', array('link' => $url_activate, 'username' => $user->user_name), function($m) use($user)
+          {
+            $m->to($user->email, $user->username)->subject('Activation Email');
+          });
 
-                return View::make('mailActive', array('mailActiveContent' => 'Email resent successfully please check your inbox / junkbox'));
-
-            }else{
-                return View::make('mailActive', array('mailActiveContent' => 'You have already actived your account, please ' . "<a href='/login'>login</a>"));
-            }
-        }else{
-            return View::make('mailActive', array('mailActiveContent' => 'Email not valid in the database.  Please ' . "<a href='login#register'>register</a>" . ' or check for typo.  Thank you.'));
+          return View::make('mailActive', array('mailActiveContent' => 'Email resent successfully please check your inbox / junkbox'));
         }
-
-        
+        else
+        {
+          return View::make('mailActive', array('mailActiveContent' => 'You have already actived your account, please ' . "<a href='/login'>login</a>"));
+        }
+      }
+      else
+      {
+        return View::make('mailActive', array('mailActiveContent' => 'Email not valid in the database.  Please ' . "<a href='login#register'>register</a>" . ' or check for typo.  Thank you.'));
+      }
     }
 
 
     /*
     ***     Route: 'active?code=NFAOtrmqIpQnr5ccpmifAq4TVu0t0DaOFThcmb0aCzY10hzkVLwNQwk7oLAU&user=et1103'
     ***     activate link in email clicked with active this function
+    ***			1st return if active is successful, redirect
+    ***			2nd return if active link failed please re-enter email
+    ***			3rd return if user cannot be found in database
      */
     public function getActive()
     {
@@ -138,7 +145,10 @@ class HomeController extends BaseController {
         $user_name = $_GET['user'];      
 
         $user = User::where('user_name','=',$user_name)->first();
-        if($user->code == $active_code){
+        if ($user)
+        {
+          if($user->code == $active_code)
+          {
             $user->code = '';
             $user->activated = 1;
             $user->save();
@@ -146,9 +156,16 @@ class HomeController extends BaseController {
             Auth::login($user);
             
             return Redirect::intended('/')->with('global', 'account actived');
-        }else{
-
+          }
+	        else
+          {
+            return View::make('mailActive', array('mailActiveContent' => 'Active Link Failed, Please enter email below to send a new activation email'));
+          }
         }
+				else
+	      {
+					return View::make('mailActive', array('mailActiveContent' => 'User cannot be found in the database.  Please ' . "<a href='login#register'>register</a>" . ' or check for typo.  Thank you.'));
+	      }
     }
 
     /*
