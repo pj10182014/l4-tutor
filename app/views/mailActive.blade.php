@@ -5,7 +5,6 @@
 	@include('layouts.css.css-login-page-level-style')
 @stop
 @section('contents')
->>>>>>> 66f518485e378a6d13d784f3ccc5434c869c5ec3
 <body class="page-header-fixed page-quick-sidebar-over-content">
 	@include('layouts.banner')
 	<div class="clearfix"> </div>
