@@ -94,26 +94,3 @@
 		</div>
 	</div>
 @stop
-
-@section('js')
-@include('layouts.js.js-core-plugin')
-@include('layouts.js.js-login-page-level-plugin')
-@include('layouts.js.js-page-level-plugin')
-@include('layouts.js.js-page-level-script')
-<script>
-	$(document).ready(function(){
-		$("#email-resubmission").validate({
-			rules: {
-				email: {
-					required: true,
-					email: true
-				}
-			}
-		});
-
-		Metronic.init(); // init metronic core components
-		Layout.init(); // init current layout
-		QuickSidebar.init(); // init quick sidebar
-	});
-</script>
-@stop
