@@ -127,7 +127,7 @@ class HomeController extends BaseController {
       }
       else
       {
-        return View::make('mailActive', array('mailActiveContent' => 'Email not valid in the database.  Please ' . "<a href='login#register'>register</a>" . ' or check for typo.  Thank you.','resendForm'=>false));
+        return View::make('mailActive', array('mailActiveContent' => 'Email not valid in the database.  Please ' . "<a href='login#register'>register</a>" . ' or check for typo.  Thank you.','resendForm'=>true));
       }
     }
 
