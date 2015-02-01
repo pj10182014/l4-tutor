@@ -7,6 +7,10 @@
 		#email-resubmission label.error{
 			color: red;
 		}
+		.form-group{
+			margin: 0;
+		}
+
 	</style>
 @stop
 @section('contents')
@@ -30,12 +34,11 @@
 									<div class="form-body">
 										{{ $mailActiveContent }}
 										@if ($resendForm)
-										<div class="input-group">
-											<span class="input-group-addon">
-											<i class="fa fa-envelope"></i>
-											</span>
-											<input class="form-control" type="text" name="email" placeholder="Email Address">
-											<div class="clear"></div>
+										<div class="form-group">
+											<div class="input-icon">
+												<i class="fa fa-envelope"></i>
+												<input class="form-control" type="text" name="email" placeholder="Please enter your email">
+											</div>
 										</div>
 									</div>
 									<div class="form-actions right">

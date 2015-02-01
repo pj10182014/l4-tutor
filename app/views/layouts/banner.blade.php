@@ -17,11 +17,9 @@
 		<!-- END RESPONSIVE MENU TOGGLER -->
 		<!-- BEGIN TOP NAVIGATION MENU -->
 		<div class="top-menu">
-			<?php if(Auth::user()){ ?>
-				<a href="{{action('HomeController@getLogout')}}">logout</a>	
-			<?php }else{
-			}
-			?>
+			@if(Auth::user())
+			<a href="{{action('HomeController@getLogout')}}">logout</a>
+			@endif
 		</div>
 	</div>
 </div>
