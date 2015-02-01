@@ -29,16 +29,19 @@
 								<form role="form" action="{{URL::action('HomeController@getMailResend')}}" id="email-resubmission">
 									<div class="form-body">
 										{{ $mailActiveContent }}
+										@if ($resendForm)
 										<div class="input-group">
 											<span class="input-group-addon">
 											<i class="fa fa-envelope"></i>
 											</span>
 											<input class="form-control" type="text" name="email" placeholder="Email Address">
+											<div class="clear"></div>
 										</div>
 									</div>
 									<div class="form-actions right">
 										<button class="btn red" type="submit">Resend Email</button>
 									</div>
+										@endif
 								</form>
 							</div> <!-- end portlet-body form -->
 						</div> <!-- end portlet box red -->

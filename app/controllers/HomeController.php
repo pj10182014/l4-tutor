@@ -46,7 +46,7 @@ class HomeController extends BaseController {
      */
     public function getHome()
     {
-        return View::make('index');
+        return View::make('index',Auth::user());
     }
 
 
@@ -97,7 +97,7 @@ class HomeController extends BaseController {
       <p>Please enter your email again to resend the activation email.</p>
       <p>*Might Take a few minutes to receive the activation mail*</p>';
 
-      return View::make('mailActive', array('mailActiveContent' => $mailActiveContent));
+      return View::make('mailActive', array('mailActiveContent' => $mailActiveContent,'resendForm'=>true));
     }
 
     public function getMailResend()
@@ -118,26 +118,26 @@ class HomeController extends BaseController {
             $m->to($user->email, $user->username)->subject('Activation Email');
           });
 
-          return View::make('mailActive', array('mailActiveContent' => 'Email resent successfully please check your inbox / junkbox'));
+          return View::make('mailActive', array('mailActiveContent' => 'Email resent successfully please check your inbox / junkbox','resendForm'=>true));
         }
         else
         {
-          return View::make('mailActive', array('mailActiveContent' => 'You have already actived your account, please ' . "<a href='/login'>login</a>"));
+          return View::make('mailActive', array('mailActiveContent' => 'You have already actived your account, please ' . "<a href='/login'>login</a>",'resendForm'=>false));
         }
       }
       else
       {
-        return View::make('mailActive', array('mailActiveContent' => 'Email not valid in the database.  Please ' . "<a href='login#register'>register</a>" . ' or check for typo.  Thank you.'));
+        return View::make('mailActive', array('mailActiveContent' => 'Email not valid in the database.  Please ' . "<a href='login#register'>register</a>" . ' or check for typo.  Thank you.','resendForm'=>false));
       }
     }
 
 
     /*
-    ***     Route: 'active?code=NFAOtrmqIpQnr5ccpmifAq4TVu0t0DaOFThcmb0aCzY10hzkVLwNQwk7oLAU&user=et1103'
-    ***     activate link in email clicked with active this function
-    ***			1st return if active is successful, redirect
-    ***			2nd return if active link failed please re-enter email
-    ***			3rd return if user cannot be found in database
+    *** Route: 'active?code=NFAOtrmqIpQnr5ccpmifAq4TVu0t0DaOFThcmb0aCzY10hzkVLwNQwk7oLAU&user=et1103'
+    *** activate link in email clicked with active this function
+    *** 1st return if active is successful, redirect
+    *** 2nd return if active link failed please re-enter email
+    ***	3rd return if user cannot be found in database
      */
     public function getActive()
     {
@@ -147,25 +147,25 @@ class HomeController extends BaseController {
         $user = User::where('user_name','=',$user_name)->first();
         if ($user)
         {
-          if($user->code == $active_code)
-          {
-            $user->code = '';
-            $user->activated = 1;
-            $user->save();
+            if($user->code == $active_code)
+            {
+                $user->code = '';
+                $user->activated = 1;
+                $user->save();
 
-            Auth::login($user);
-            
-            return Redirect::intended('/')->with('global', 'account actived');
-          }
-	        else
-          {
-            return View::make('mailActive', array('mailActiveContent' => 'Active Link Failed, Please enter email below to send a new activation email'));
-          }
+                Auth::login($user);
+
+                return Redirect::intended('/')->with('global', 'account actived');
+            }
+            else
+            {
+                return View::make('mailActive', array('mailActiveContent' => 'Active Link Failed, Please enter email below to send a new activation email'));
+            }
         }
-				else
-	      {
-					return View::make('mailActive', array('mailActiveContent' => 'User cannot be found in the database.  Please ' . "<a href='login#register'>register</a>" . ' or check for typo.  Thank you.'));
-	      }
+		else
+        {
+            return View::make('mailActive', array('mailActiveContent' => 'User cannot be found in the database.  Please ' . "<a href='login#register'>register</a>" . ' or check for typo.  Thank you.'));
+        }
     }
 
     /*
