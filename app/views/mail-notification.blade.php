@@ -20,7 +20,7 @@
 				</div>
 			</div>	<!-- end portlet-title -->
 			<div class="portlet-body form" style="display: block;">
-				<form role="form" action="{{URL::action('HomeController@getMailResend')}}" id="email-resubmission">
+				<form role="form" action="resend" id="email-resubmission" method ="POST">
 					<div class="form-body">
 						{{ $mailActiveContent }}
 						@if ($resendForm)

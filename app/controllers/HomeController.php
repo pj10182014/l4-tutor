@@ -104,7 +104,21 @@ class HomeController extends BaseController {
       return View::make('mail-notification', array('mailActiveContent' => $mailActiveContent,'resendForm'=>true));
     }
 
-    public function getMailResend()
+    public function getResend(){
+      $user = Auth::user();
+      
+      if($user)
+      {        
+        return View::make('mail-notification', array('mailActiveContent' => 'You have already actived your account, please ' . "<a href='/login'>login</a>",'resendForm'=>false));
+      }
+      else
+      {
+        return View::make('mail-notification', array('mailActiveContent' => "Please enter your email to resend you the active email.",'resendForm'=>true));
+      }
+    }
+
+
+    public function postResend()
     {
       $email = Input::get('email');
 
