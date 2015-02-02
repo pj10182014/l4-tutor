@@ -22,7 +22,11 @@ class HomeController extends BaseController {
     */
     public function getLogin()
     {
-        return View::make('login');
+        if(Auth::check()){
+          return View::make('notification.login-notification', array('loginInformation' => 'you already login stupid'));
+        }else{
+          return View::make('login');
+        }
     }
 
     /*
