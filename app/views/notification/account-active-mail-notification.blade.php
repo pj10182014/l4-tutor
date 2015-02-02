@@ -22,7 +22,7 @@
 			<div class="portlet-body form" style="display: block;">
 				<form role="form" action="resend" id="email-resubmission" method ="POST">
 					<div class="form-body">
-						{{ $mailActiveContent }}
+						{{ $accountActiveContent }}
 						@if ($resendForm)
 						<div class="form-group">
 							<div class="input-icon">

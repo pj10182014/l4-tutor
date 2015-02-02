@@ -84,7 +84,7 @@ class HomeController extends BaseController {
                     $m->to($user->email, $user->username)->subject('Activation Email');
             });
         }
-        return Redirect::action('HomeController@getMailActive');
+        return Redirect::action('HomeController@getAccountActive');
     }
 
     /*
@@ -94,14 +94,14 @@ class HomeController extends BaseController {
     ***     if email submit is not actived 'email will resend'
      */
 
-    public function getMailActive()
+    public function getAccountActive()
     {
-      $mailActiveContent = 
+      $accountActiveContent = 
       '<p>Please check your email inbox / junkbox for the activation email.</p>
       <p>Please enter your email again to resend the activation email.</p>
       <p>*Might Take a few minutes to receive the activation mail*</p>';
 
-      return View::make('mail-notification', array('mailActiveContent' => $mailActiveContent,'resendForm'=>true));
+      return View::make('notification.account-active-mail-notification', array('accountActiveContent' => $accountActiveContent,'resendForm'=>true));
     }
 
     public function getResend(){
@@ -109,11 +109,11 @@ class HomeController extends BaseController {
       
       if($user)
       {        
-        return View::make('mail-notification', array('mailActiveContent' => 'You have already actived your account, please ' . "<a href='/login'>login</a>",'resendForm'=>false));
+        return View::make('notification.account-resend-mail-notification', array('accountActiveResendContent' => 'You have already actived your account, please ' . "<a href='/login'>login</a>",'resendForm'=>false));
       }
       else
       {
-        return View::make('mail-notification', array('mailActiveContent' => "Please enter your email to resend you the active email.",'resendForm'=>true));
+        return View::make('notification.account-resend-mail-notification', array('accountActiveResendContent' => "Please enter your email to resend you the active email.",'resendForm'=>true));
       }
     }
 
@@ -136,16 +136,16 @@ class HomeController extends BaseController {
             $m->to($user->email, $user->username)->subject('Activation Email');
           });
 
-          return View::make('mail-notification', array('mailActiveContent' => 'Email resent successfully please check your inbox / junkbox','resendForm'=>true));
+          return View::make('notification.account-resend-mail-notification', array('accountActiveResendContent' => 'Email resent successfully please check your inbox / junkbox','resendForm'=>true));
         }
         else
         {
-          return View::make('mail-notification', array('mailActiveContent' => 'You have already actived your account, please ' . "<a href='/login'>login</a>",'resendForm'=>false));
+          return View::make('notification.account-resend-mail-notification', array('accountActiveResendContent' => 'You have already actived your account, please ' . "<a href='/login'>login</a>",'resendForm'=>false));
         }
       }
       else
       {
-        return View::make('mail-notification', array('mailActiveContent' => 'Email not valid in the database.  Please ' . "<a href='login#register'>register</a>" . ' or check for typo.  Thank you.','resendForm'=>true));
+        return View::make('notification.account-resend-mail-notification', array('accountActiveResendContent' => 'Email not valid in the database.  Please ' . "<a href='login#register'>register</a>" . ' or check for typo.  Thank you.','resendForm'=>true));
       }
     }
 
