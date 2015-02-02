@@ -97,7 +97,7 @@ class HomeController extends BaseController {
       <p>Please enter your email again to resend the activation email.</p>
       <p>*Might Take a few minutes to receive the activation mail*</p>';
 
-      return View::make('mailActive', array('mailActiveContent' => $mailActiveContent,'resendForm'=>true));
+      return View::make('mail-notification', array('mailActiveContent' => $mailActiveContent,'resendForm'=>true));
     }
 
     public function getMailResend()
@@ -118,16 +118,16 @@ class HomeController extends BaseController {
             $m->to($user->email, $user->username)->subject('Activation Email');
           });
 
-          return View::make('mailActive', array('mailActiveContent' => 'Email resent successfully please check your inbox / junkbox','resendForm'=>true));
+          return View::make('mail-notification', array('mailActiveContent' => 'Email resent successfully please check your inbox / junkbox','resendForm'=>true));
         }
         else
         {
-          return View::make('mailActive', array('mailActiveContent' => 'You have already actived your account, please ' . "<a href='/login'>login</a>",'resendForm'=>false));
+          return View::make('mail-notification', array('mailActiveContent' => 'You have already actived your account, please ' . "<a href='/login'>login</a>",'resendForm'=>false));
         }
       }
       else
       {
-        return View::make('mailActive', array('mailActiveContent' => 'Email not valid in the database.  Please ' . "<a href='login#register'>register</a>" . ' or check for typo.  Thank you.','resendForm'=>true));
+        return View::make('mail-notification', array('mailActiveContent' => 'Email not valid in the database.  Please ' . "<a href='login#register'>register</a>" . ' or check for typo.  Thank you.','resendForm'=>true));
       }
     }
 
@@ -159,12 +159,12 @@ class HomeController extends BaseController {
             }
             else
             {
-                return View::make('mailActive', array('mailActiveContent' => 'Active Link Failed, Please enter email below to send a new activation email'));
+                return View::make('mail-notification', array('mailActiveContent' => 'Active Link Failed, Please enter email below to send a new activation email'));
             }
         }
 		else
         {
-            return View::make('mailActive', array('mailActiveContent' => 'User cannot be found in the database.  Please ' . "<a href='login#register'>register</a>" . ' or check for typo.  Thank you.'));
+            return View::make('mail-notification', array('mailActiveContent' => 'User cannot be found in the database.  Please ' . "<a href='login#register'>register</a>" . ' or check for typo.  Thank you.'));
         }
     }
 
