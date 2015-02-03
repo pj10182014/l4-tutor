@@ -66,7 +66,7 @@
 	</form>
 	<!-- END LOGIN FORM -->
 	<!-- BEGIN FORGOT PASSWORD FORM -->
-	<form class="forget-form" action="." method="post">
+	<form class="forget-form" action="reset-password" method="post">
 		<h3>Forget Password ?</h3>
 		<p>
 			 Enter your e-mail address below to reset your password.

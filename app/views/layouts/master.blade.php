@@ -19,9 +19,6 @@
 
 	</head>
 
-		@if(Session::has('global'))
-			<p class='global'>{{ Session::get('global') }}</p>
-		@endif
 		@yield('contents')
 
 		@include('layouts.footer')
