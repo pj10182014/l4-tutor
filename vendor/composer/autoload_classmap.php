@@ -6,7 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AjaxController' => $baseDir . '/app/controllers/AjaxController.php',
     'AlterUserTableAddRemeberTokenColumn' => $baseDir . '/app/database/migrations/2015_01_03_224115_AlterUserTableAddRemeberTokenColumn.php',
+    'AlterUserTableRemoveIndexofEmailandPhone' => $baseDir . '/app/database/migrations/2015_02_08_234406_AlterUserTableRemoveIndexofEmailandPhone.php',
     'BaseController' => $baseDir . '/app/controllers/BaseController.php',
     'Boris\\Boris' => $vendorDir . '/d11wtq/boris/lib/Boris/Boris.php',
     'Boris\\CLIOptionsHandler' => $vendorDir . '/d11wtq/boris/lib/Boris/CLIOptionsHandler.php',

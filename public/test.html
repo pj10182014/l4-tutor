@@ -4,26 +4,20 @@
 		<script>
 			$( document ).ready(function() {
 				$( ".btn" ).click(function() {
-					var username = $('.input').val();
-					$.ajax({
-						type: 'POST',
-						url: "/ajax.php",
-						data: {username: username},
-						dataType: "json",
-						success: function( data ){
-							if(data['result'] == 1){
-								
-							}else{
-								
-							}
-						}
-					});
+					$('.inp').val('');
+					$('.inp').attr("placeholder", "12233");
+					$('.inp').addClass('error-placeholder');					
 				});
 			});
 		</script>
+		<style>
+			.error-placeholder{
+			    color: red !important;
+			}
+		</style>
 	</head>
 	<body>
 		<button class='btn'>sub</button>
-		<input class='input' value=''></input>
+		<input class='inp' value='' placeholder='hahahhaha'></input>
 	</body>
 </html>
