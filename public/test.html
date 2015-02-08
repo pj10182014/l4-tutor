@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<script src="assets/global/plugins/jquery-1.11.0.min.js"></script>
+		<script>
+			$( document ).ready(function() {
+				$( ".btn" ).click(function() {
+					var username = $('.input').val();
+					$.ajax({
+						type: 'POST',
+						url: "/ajax.php",
+						data: {username: username},
+						dataType: "json",
+						success: function( data ){
+							if(data['result'] == 1){
+								
+							}else{
+								
+							}
+						}
+					});
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<button class='btn'>sub</button>
+		<input class='input' value=''></input>
+	</body>
+</html>
