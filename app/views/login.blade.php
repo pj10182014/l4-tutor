@@ -3,6 +3,11 @@
 @include('layouts.css.css-global-mandatory')
 @include('layouts.css.css-theme-style')
 @include('layouts.css.css-login-page-level-style')
+<style>
+	.error-placeholder{
+		background-color: yellow !important;
+	}
+</style>
 @stop
 @section('contents')
 <body class="login">
@@ -97,7 +102,7 @@
 			<label class="control-label visible-ie8 visible-ie9">Username</label>
 			<div class="input-icon">
 				<i class="fa fa-user"></i>
-				<input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="username"/>
+				<input id="username-signup" class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="username"/>
 			</div>
 		</div>
 		<div class="form-group">
@@ -154,11 +159,38 @@
 @include('layouts.js.js-login-init-script')
 <script>
 	$(document).ready(function() {
+
+		//if url has #register #register-btn will auto click
 		var pathname = window.location.href;
 		var n = pathname.indexOf("#register");
 		if(n > 0){
 			$('#register-btn').click();
-		}	
-	});
+		}
+
+		//Username Sign up input forcus out
+		$("#username-signup").focusout(function() {
+			var username = $('#username-signup').val();
+			$.ajax({
+				type: 'POST',
+				url: "/ajax/validate-username",
+				data: {username: username},
+				dataType: "json",
+				success: function( data ){
+					if (data['exist'])
+					{
+						$('#username-signup').val('');
+						$('#username-signup').attr('placeholder', 'User Exists');
+						$('#username-signup').addClass('error-placeholder');	
+					};
+				}
+			});  //end ajax
+		});  //end username-signup focusout
+
+		$("#username-signup").focusin(function() {
+			$("#username-signup").removeClass('error-placeholder');
+			$('#username-signup').attr('placeholder', 'Username');
+		});  //end username-signup forcusin
+
+	}); //end document ready
 </script>
 @stop
