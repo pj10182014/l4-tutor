@@ -41,7 +41,7 @@ class HomeController extends BaseController {
         {
             return Redirect::intended('/');
         }
-        return 'Error login.  Please check your username / password or make sure you have actived your account.  Thank you';
+        return View::make('notification.login-notification', array('loginInformation' => 'Login Error<br>Please check your username / password.<br>Make sure you have actived your account. <br>Thank you'));
     }
 
     /*
@@ -221,8 +221,9 @@ class HomeController extends BaseController {
           $m->to($user->email, $user->username)->subject('Reset Password Email');
         });
 
-        return View::make('notification.reset-password-notification', array('resetPasswordContent' => 'A temporary password has been sent to your email '. $user->email . '<br>Please check inbox /junkbox'));
+        return View::make('notification.reset-password-notification', array('resetPasswordContent' => 'A temporary password has been sent to your email '. $user->email . '<br>Please check inbox /junkbox', 'resendForm' => false));
     	}
+      return View::make('notification.reset-password-notification', array('resetPasswordContent' => $email . ' cannot be found in the database.  Please enter a valid database.', 'resendForm' => true));
     }
 
     /*

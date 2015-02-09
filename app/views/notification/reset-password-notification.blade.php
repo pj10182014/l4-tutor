@@ -17,9 +17,21 @@
 				</div>
 			</div>	<!-- end portlet-title -->
 			<div class="portlet-body form" style="display: block;">
-				<form role="form" action="resend" id="email-resubmission" method ="POST">
+				<form role="form" action="reset-password" id="email-resubmission" method ="POST">
 					<div class="form-body">
 						{{ $resetPasswordContent }}
+						@if ($resendForm)
+						<div class="form-group">
+							<div class="input-icon">
+								<i class="fa fa-envelope"></i>
+								<input class="form-control" type="text" name="email" placeholder="Please enter your email">
+							</div>
+						</div>
+					</div>
+					<div class="form-actions right">
+						<button class="btn red" type="submit">Resend Email</button>
+					</div>
+						@endif
 				</form>
 			</div> <!-- end portlet-body form -->
 		</div> <!-- end portlet box red -->
