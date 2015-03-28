@@ -1,7 +1,13 @@
 @extends('layouts.master')
 @section('css')
-	@include('layouts.css.css-global-mandatory')
-	@include('layouts.css.css-theme-style')
+	@include('layouts.css.global')
+	{{-- BEGIN THEME STYLES --}}
+	{{ HTML::style('assets/global/css/components.css');}}
+	{{ HTML::style('assets/assets/global/css/plugins.css');}}
+	{{ HTML::style('assets/admin/layout/css/layout.css');}}
+	{{ HTML::style('assets/admin/layout/css/themes/default.css');}}
+	{{ HTML::style('assets/admin/layout/css/custom.css');}}
+	{{-- END THEME STYLES --}}
 	@include('layouts.css.css-login-page-level-style')
 @stop
 @section('contents')
@@ -24,10 +30,10 @@
 @stop
 
 @section('js')
-	@include('layouts.js.js-core-plugin')
-	@include('layouts.js.js-login-page-level-plugin')
-	@include('layouts.js.js-page-level-plugin')
-	@include('layouts.js.js-page-level-script')
+	@include('layouts.js.backend.js-core-plugin')
+	@include('layouts.js.backend.js-login-page-level-plugin')
+	@include('layouts.js.backend.js-page-level-plugin')
+	@include('layouts.js.backend.js-page-level-script')
 <script>
 		Metronic.init(); // init metronic core components
 		Layout.init(); // init current layout

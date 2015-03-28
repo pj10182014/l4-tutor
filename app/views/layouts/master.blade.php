@@ -12,16 +12,25 @@
 		<meta content="This is a Metronic Frontend test" name="description"/>
 		<meta content="Dingding Pan" name="author"/>
 
+		<meta property="og:site_name" content="-CUSTOMER VALUE-">
+		<meta property="og:title" content="-CUSTOMER VALUE-">
+		<meta property="og:description" content="-CUSTOMER VALUE-">
+		<meta property="og:type" content="website">
+		<meta property="og:image" content="-CUSTOMER VALUE-"><!-- link to image for socio -->
+		<meta property="og:url" content="-CUSTOMER VALUE-">
+
+		@include('layouts.css.global.global')
 		@yield('css')
+		
 		<!-- favicon icon -->
 		<link rel="shortcut icon" href="assets/favicon.ico"/>
-		<style>.global{color: #FF0000;}</style>
 
 	</head>
 
 		@yield('contents')
 
 		@include('layouts.footer')
+		@include('layouts.js.global.global')
 		@yield('js')
 		
 	</body>

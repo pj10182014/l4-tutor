@@ -1,8 +1,16 @@
 @extends('layouts.master')
 @section('css')
-@include('layouts.css.css-global-mandatory')
-@include('layouts.css.css-theme-style')
-@include('layouts.css.css-login-page-level-style')
+	{{-- BEGIN THEME STYLES --}}
+	{{ HTML::style('assets/global/css/components.css');}}
+	{{ HTML::style('assets/assets/global/css/plugins.css');}}
+	{{ HTML::style('assets/admin/layout/css/layout.css');}}
+	{{ HTML::style('assets/admin/layout/css/themes/default.css');}}
+	{{ HTML::style('assets/admin/layout/css/custom.css');}}
+	{{-- END THEME STYLES --}}
+	{{-- BEGIN LOGIN-PAGE LEVEL STYLES --}}
+	{{ HTML::style('assets/global/plugins/select2/select2.css');}}
+	{{ HTML::style('assets/admin/pages/css/login-soft.css');}}
+	{{-- END LOGIN-PAGE LEVEL STYLES --}}
 <style>
 	.error-placeholder{
 		background-color: yellow !important;
@@ -152,11 +160,20 @@
 <!-- END LOGIN -->
 @stop
 @section('js')
-@include('layouts.js.js-core-plugin')
-@include('layouts.js.js-login-page-level-plugin')
-@include('layouts.js.js-login-page-level-script')
-@include('layouts.js.js-page-level-script')
-@include('layouts.js.js-login-init-script')
+	{{-- BEGIN PAGE LEVEL PLUGINS --}}
+	{{ HTML::script('assets/global/plugins/jquery-validation/js/jquery.validate.min.js');}}
+	{{ HTML::script('assets/global/plugins/backstretch/jquery.backstretch.min.js');}}
+	{{ HTML::script('assets/global/plugins/select2/select2.min.js');}}
+	{{-- END PAGE LEVEL PLUGINS --}}
+	{{-- BEGIN PAGE LEVEL SCRIPTS --}}
+	{{ HTML::script('assets/admin/layout/scripts/demo.js');}}
+	{{ HTML::script('assets/admin/pages/scripts/login-soft.js');}}
+	{{ HTML::script('assets/global/scripts/metronic.js');}}
+	{{ HTML::script('assets/admin/layout/scripts/layout.js');}}
+	{{ HTML::script('assets/admin/layout/scripts/quick-sidebar.js');}}
+	{{ HTML::script('assets/admin/pages/scripts/index.js');}}
+	{{ HTML::script('assets/admin/pages/scripts/tasks.js');}}
+	{{-- END PAGE LEVEL SCRIPTS --}}
 <script>
 	$(document).ready(function() {
 
