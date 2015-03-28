@@ -14,5 +14,5 @@
 //print App::environment();
 Route::controller('student','StudentController');
 Route::controller('ajax','AjaxController');
-Route::controller('/','HomeController');
 Route::controller('admin','AdminController');
+Route::controller('/','HomeController');
