@@ -28,8 +28,8 @@
             Layout.initOWL();
             RevosliderInit.initRevoSlider();
             Layout.initTwitter();
-            //Layout.initFixHeaderWithPreHeader(); /* Switch On Header Fixing (only if you have pre-header) */
-            //Layout.initNavScrolling(); 
+            Layout.initFixHeaderWithPreHeader(); /* Switch On Header Fixing (only if you have pre-header) */
+            Layout.initNavScrolling(); 
         });
     </script>
     <!-- END RevolutionSlider -->
