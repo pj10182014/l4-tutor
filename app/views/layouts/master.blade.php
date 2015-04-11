@@ -26,7 +26,7 @@
 		<link rel="shortcut icon" href="assets/favicon.ico"/>
 
 	</head>
-
+		@include('layouts.banner')
 		@yield('contents')
 
 		@include('layouts.footer')
