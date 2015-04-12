@@ -7,10 +7,10 @@
 	{{ HTML::style('assets/admin/layout/css/themes/default.css');}}
 	{{ HTML::style('assets/admin/layout/css/custom.css');}}
 	{{-- END THEME STYLES --}}
-	{{-- BEGIN LOGIN-PAGE LEVEL STYLES --}}
-	{{ HTML::style('assets/global/plugins/select2/select2.css');}}
-	{{ HTML::style('assets/admin/pages/css/login-soft.css');}}
-	{{-- END LOGIN-PAGE LEVEL STYLES --}}
+	<!-- Page level plugin styles START -->
+	{{ HTML::style('assets/global/plugins/fancybox/source/jquery.fancybox.css');}}
+	{{ HTML::style('assets/global/plugins/uniform/css/uniform.default.css');}}
+	<!-- Page level plugin styles END -->
 <style>
 	.error-placeholder{
 		background-color: yellow !important;
