@@ -10,6 +10,7 @@
 	}
 </style>
 @stop
+
 @section('contents')
 <body class="corporate">
 <div class="main">
@@ -56,7 +57,7 @@
                     </div>
                     <div class="row">
                       <div class="col-lg-8 col-md-offset-4 padding-left-0">
-                        <a href="page-forgotton-password.html">Forget Password?</a>
+                        <a href="{{URL::action('AdminController@getForgetPassword')}}">Forget Password?</a>
                       </div>
                     </div>
                     <div class="row">
@@ -97,6 +98,7 @@
       </div>
     </div>
 @stop
+
 @section('js')
   <!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
 	{{ HTML::script('assets/global/plugins/jquery-validation/js/jquery.validate.min.js');}}
@@ -108,6 +110,7 @@
 		Layout.init();
     Layout.initUniform();
     Layout.initTwitter();
+    Layout.initFixHeaderWithPreHeader();
 
 		//if url has #register #register-btn will auto click
 		var pathname = window.location.href;

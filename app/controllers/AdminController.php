@@ -235,6 +235,11 @@ class AdminController extends BaseController {
         return Redirect::action('AdminController@getLogin');
     }
 
+    public function getForgetPassword()
+    {
+      return View::make('forgetPassword');
+    }
+
 }
 
 ?>
