@@ -37,8 +37,8 @@
                 data-y="0" 
                 data-speed="700" 
                 data-start="1000" 
-                data-easing="easeOutExpo">
-                <img src="../../assets/frontend/pages/img/revolutionslider/lady.png" alt="Image 1">
+                data-easing="easeOutExpo  ">
+                <img src="../../assets/frontend/pages/img/revolutionslider/ring.png" alt="Image 1">
               </div>
             </li>    
 

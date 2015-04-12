@@ -13,7 +13,7 @@
             <!-- BEGIN TOP BAR MENU -->
             <div class="col-md-6 col-sm-6 additional-nav">
                 <ul class="list-unstyled list-inline pull-right">
-                    <li><a href="page-login.html">Log In</a></li>
+                    <li><a href="admin">Log In</a></li>
                     <li><a href="page-reg-page.html">Registration</a></li>
                 </ul>
             </div>
