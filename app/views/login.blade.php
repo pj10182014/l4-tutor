@@ -1,12 +1,5 @@
 @extends('layouts.master')
 @section('css')
-	{{-- BEGIN THEME STYLES --}}
-	{{ HTML::style('assets/global/css/components.css');}}
-	{{ HTML::style('assets/assets/global/css/plugins.css');}}
-	{{ HTML::style('assets/admin/layout/css/layout.css');}}
-	{{ HTML::style('assets/admin/layout/css/themes/default.css');}}
-	{{ HTML::style('assets/admin/layout/css/custom.css');}}
-	{{-- END THEME STYLES --}}
 	<!-- Page level plugin styles START -->
 	{{ HTML::style('assets/global/plugins/fancybox/source/jquery.fancybox.css');}}
 	{{ HTML::style('assets/global/plugins/uniform/css/uniform.default.css');}}
@@ -18,164 +11,103 @@
 </style>
 @stop
 @section('contents')
-<body class="login">
-<!-- BEGIN LOGO -->
-<div class="logo">
-<a href=".">
-<img src="../assets/admin/layout/img/logo-big.png" alt=""/>
-</a>
-</div>
-<!-- END LOGO -->
-<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-<div class="menu-toggler sidebar-toggler">
-</div>
-<!-- END SIDEBAR TOGGLER BUTTON -->
-<!-- BEGIN LOGIN -->
-<div class="content">
-	<!-- BEGIN LOGIN FORM -->
-	<form class="login-form" action="login" method="POST">
-		<h3 class="form-title">Login to your account</h3>
-		<div class="alert alert-danger display-hide">
-			<button class="close" data-close="alert"></button>
-			<span>
-			Enter any username and password. </span>
-		</div>
-		<div class="form-group">
-			<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-			<label class="control-label visible-ie8 visible-ie9">Username</label>
-			<div class="input-icon">
-				<i class="fa fa-user"></i>
-				<input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="username"/>
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="control-label visible-ie8 visible-ie9">Password</label>
-			<div class="input-icon">
-				<i class="fa fa-lock"></i>
-				<input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password"/>
-			</div>
-		</div>
-		<div class="form-actions">
-			<label class="checkbox">
-			<input type="checkbox" name="remember" value="1"/> Remember me </label>
-			<button type="submit" class="btn blue pull-right">
-			Login <i class="m-icon-swapright m-icon-white"></i>
-			</button>
-		</div>
-		<div class="forget-password">
-			<h4>Forgot your password ?</h4>
-			<p>
-				 no worries, click <a href="javascript:;" id="forget-password">
-				here </a>
-				to reset your password.
-			</p>
-		</div>
-		<div class="create-account">
-			<p>
-				 Don't have an account yet ?&nbsp; <a href="javascript:;" id="register-btn">
-				Create an account </a>
-			</p>
-		</div>
-	</form>
-	<!-- END LOGIN FORM -->
-	<!-- BEGIN FORGOT PASSWORD FORM -->
-	<form class="forget-form" action="reset-password" method="post">
-		<h3>Forget Password ?</h3>
-		<p>
-			 Enter your e-mail address below to reset your password.
-		</p>
-		<div class="form-group">
-			<div class="input-icon">
-				<i class="fa fa-envelope"></i>
-				<input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Email" name="email"/>
-			</div>
-		</div>
-		<div class="form-actions">
-			<button type="button" id="back-btn" class="btn">
-			<i class="m-icon-swapleft"></i> Back </button>
-			<button type="submit" class="btn blue pull-right">
-			Submit <i class="m-icon-swapright m-icon-white"></i>
-			</button>
-		</div>
-	</form>
-	<!-- END FORGOT PASSWORD FORM -->
+<body class="corporate">
+<div class="main">
+      <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Pages</a></li>
+            <li class="active">Login</li>
+        </ul>
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+          <!-- BEGIN SIDEBAR -->
+          <div class="sidebar col-md-3 col-sm-3">
+            <ul class="list-group margin-bottom-25 sidebar-menu">
+              <li class="list-group-item clearfix"><a href="#"><i class="fa fa-angle-right"></i> Login/Register</a></li>
+              <li class="list-group-item clearfix"><a href="#"><i class="fa fa-angle-right"></i> Restore Password</a></li>
+              <li class="list-group-item clearfix"><a href="#"><i class="fa fa-angle-right"></i> My account</a></li>
+              <li class="list-group-item clearfix"><a href="#"><i class="fa fa-angle-right"></i> Address book</a></li>
+              <li class="list-group-item clearfix"><a href="#"><i class="fa fa-angle-right"></i> Wish list</a></li>
+              <li class="list-group-item clearfix"><a href="#"><i class="fa fa-angle-right"></i> Returns</a></li>
+              <li class="list-group-item clearfix"><a href="#"><i class="fa fa-angle-right"></i> Newsletter</a></li>
+            </ul>
+          </div>
+          <!-- END SIDEBAR -->
 
-	<!-- BEGIN REGISTRATION FORM -->
-	<form class="register-form" action="signup" method="POST">
-		<h3>Sign Up</h3>
-		<p>
-			 Enter your account details below:
-		</p>
-		<div class="form-group">
-			<label class="control-label visible-ie8 visible-ie9">Username</label>
-			<div class="input-icon">
-				<i class="fa fa-user"></i>
-				<input id="username-signup" class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="username"/>
-			</div>
-		</div>
-		<div class="form-group">
-			<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-			<label class="control-label visible-ie8 visible-ie9">Email</label>
-			<div class="input-icon">
-				<i class="fa fa-envelope"></i>
-				<input class="form-control placeholder-no-fix" type="text" placeholder="Email" name="email"/>
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="control-label visible-ie8 visible-ie9">Password</label>
-			<div class="input-icon">
-				<i class="fa fa-lock"></i>
-				<input class="form-control placeholder-no-fix" type="password" autocomplete="off" id="register_password" placeholder="Password" name="password"/>
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="control-label visible-ie8 visible-ie9">Re-type Your Password</label>
-			<div class="controls">
-				<div class="input-icon">
-					<i class="fa fa-check"></i>
-					<input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Re-type Your Password" name="rpassword"/>
-				</div>
-			</div>
-		</div>
-		<div class="form-group">
-			<label>
-			<input type="checkbox" name="tnc"/> I agree to the <a href="#">
-			Terms of Service </a>
-			and <a href="#">
-			Privacy Policy </a>
-			</label>
-			<div id="register_tnc_error">
-			</div>
-		</div>
-		<div class="form-actions">
-			<button id="register-back-btn" type="button" class="btn">
-			<i class="m-icon-swapleft"></i> Back </button>
-			<button type="submit" id="register-submit-btn" class="btn blue pull-right">
-			Sign Up <i class="m-icon-swapright m-icon-white"></i>
-			</button>
-		</div>
-	</form>
-	<!-- END REGISTRATION FORM -->
-</div>
-<!-- END LOGIN -->
+          <!-- BEGIN CONTENT -->
+          <div class="col-md-9 col-sm-9">
+            <h1>Login</h1>
+            <div class="content-form-page">
+              <div class="row">
+                <div class="col-md-7 col-sm-7">
+                  <form class="form-horizontal form-without-legend" role="form">
+                    <div class="form-group">
+                      <label for="email" class="col-lg-4 control-label">Email <span class="require">*</span></label>
+                      <div class="col-lg-8">
+                        <input type="text" class="form-control" id="email">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="password" class="col-lg-4 control-label">Password <span class="require">*</span></label>
+                      <div class="col-lg-8">
+                        <input type="text" class="form-control" id="password">
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-8 col-md-offset-4 padding-left-0">
+                        <a href="page-forgotton-password.html">Forget Password?</a>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-8 col-md-offset-4 padding-left-0 padding-top-20">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-8 col-md-offset-4 padding-left-0 padding-top-10 padding-right-30">
+                        <hr>
+                        <div class="login-socio">
+                            <p class="text-muted">or login using:</p>
+                            <ul class="social-icons">
+                                <li><a href="#" data-original-title="facebook" class="facebook" title="facebook"></a></li>
+                                <li><a href="#" data-original-title="Twitter" class="twitter" title="Twitter"></a></li>
+                                <li><a href="#" data-original-title="Google Plus" class="googleplus" title="Google Plus"></a></li>
+                                <li><a href="#" data-original-title="Linkedin" class="linkedin" title="LinkedIn"></a></li>
+                            </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="col-md-4 col-sm-4 pull-right">
+                  <div class="form-info">
+                    <h2><em>Important</em> Information</h2>
+                    <p>Duis autem vel eum iriure at dolor vulputate velit esse vel molestie at dolore.</p>
+
+                    <button type="button" class="btn btn-default">More details</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- END CONTENT -->
+        </div>
+        <!-- END SIDEBAR & CONTENT -->
+      </div>
+    </div>
 @stop
 @section('js')
-	{{-- BEGIN PAGE LEVEL PLUGINS --}}
+  <!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
 	{{ HTML::script('assets/global/plugins/jquery-validation/js/jquery.validate.min.js');}}
-	{{ HTML::script('assets/global/plugins/backstretch/jquery.backstretch.min.js');}}
-	{{ HTML::script('assets/global/plugins/select2/select2.min.js');}}
-	{{-- END PAGE LEVEL PLUGINS --}}
-	{{-- BEGIN PAGE LEVEL SCRIPTS --}}
-	{{ HTML::script('assets/admin/layout/scripts/demo.js');}}
-	{{ HTML::script('assets/admin/pages/scripts/login-soft.js');}}
-	{{ HTML::script('assets/global/scripts/metronic.js');}}
-	{{ HTML::script('assets/admin/layout/scripts/layout.js');}}
-	{{ HTML::script('assets/admin/layout/scripts/quick-sidebar.js');}}
-	{{ HTML::script('assets/admin/pages/scripts/index.js');}}
-	{{ HTML::script('assets/admin/pages/scripts/tasks.js');}}
-	{{-- END PAGE LEVEL SCRIPTS --}}
+	{{ HTML::script('assets/global/plugins/fancybox/source/jquery.fancybox.pack.js');}}
+	{{ HTML::script('assets/global/plugins/uniform/jquery.uniform.min.js');}}
 <script>
 	$(document).ready(function() {
+
+		Layout.init();
+    Layout.initUniform();
+    Layout.initTwitter();
 
 		//if url has #register #register-btn will auto click
 		var pathname = window.location.href;
@@ -210,4 +142,5 @@
 
 	}); //end document ready
 </script>
+{{-- END PAGE LEVEL JAVASCRIPT --}}
 @stop
