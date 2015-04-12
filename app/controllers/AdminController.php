@@ -240,6 +240,11 @@ class AdminController extends BaseController {
       return View::make('forgetPassword');
     }
 
+    public function getRegistration()
+    {
+      return View::make('registration');
+    }
+
 }
 
 ?>
