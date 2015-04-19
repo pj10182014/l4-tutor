@@ -11,12 +11,21 @@
             </div>
             <!-- END TOP BAR LEFT PART -->
             <!-- BEGIN TOP BAR MENU -->
+            @if(Auth::check())
+            <div class="col-md-6 col-sm-6 additional-nav">
+                <ul class="list-unstyled list-inline pull-right">
+                    <li><a href="/login">name</a></li>
+                    <li><a href="/registration">Logout</a></li>
+                </ul>
+            </div>
+            @else
             <div class="col-md-6 col-sm-6 additional-nav">
                 <ul class="list-unstyled list-inline pull-right">
                     <li><a href="/login">Log In</a></li>
                     <li><a href="/registration">Registration</a></li>
                 </ul>
             </div>
+            @endif
             <!-- END TOP BAR MENU -->
         </div>
     </div>        
