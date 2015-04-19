@@ -1,24 +1,14 @@
-<div class="page-sidebar-wrapper">
-	<div class="page-sidebar navbar-collapse collapse">
-		<ul class="page-sidebar-menu " data-slide-speed="200" data-auto-scroll="true">
-			<li class="sidebar-toggler-wrapper">
-				<div class="sidebar-toggler"> </div>
-			</li>
-			<li class="sidebar-search-wrapper">
-				<form class="sidebar-search " method="POST" action="extra_search.html">
-					<a class="remove" href="javascript:;">
-						<i class="icon-close"></i>
-					</a>
-					<div class="input-group">
-						<input class="form-control" type="text" placeholder="Search...">
-						<span class="input-group-btn">
-							<a class="btn submit" href="javascript:;">
-								<i class="icon-magnifier"></i>
-							</a>
-						</span>
-					</div>
-				</form>
-			</li>
-		</ul>
-	</div>
+<div class="sidebar col-md-3 col-sm-3">
+  <ul class="list-group margin-bottom-25 sidebar-menu">
+    <li class="list-group-item clearfix"><a href="/login"><i class="fa fa-angle-right"></i> Login</a></li>
+    <li class="list-group-item clearfix"><a href="/registration"><i class="fa fa-angle-right"></i> Register</a></li>
+    <li class="list-group-item clearfix"><a href="/forget-password"><i class="fa fa-angle-right"></i> Restore Password</a></li>
+    @if(Auth::check())
+	    <li class="list-group-item clearfix"><a href="#"><i class="fa fa-angle-right"></i> My account</a></li>
+	    <li class="list-group-item clearfix"><a href="#"><i class="fa fa-angle-right"></i> Address book</a></li>
+	    <li class="list-group-item clearfix"><a href="#"><i class="fa fa-angle-right"></i> Wish list</a></li>
+	    <li class="list-group-item clearfix"><a href="#"><i class="fa fa-angle-right"></i> Returns</a></li>
+	    <li class="list-group-item clearfix"><a href="#"><i class="fa fa-angle-right"></i> Newsletter</a></li>
+    @endif
+  </ul>
 </div>
