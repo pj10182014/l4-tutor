@@ -57,7 +57,7 @@
                     </div>
                     <div class="row">
                       <div class="col-lg-8 col-md-offset-4 padding-left-0">
-                        <a href="{{URL::action('AdminController@getForgetPassword')}}">Forget Password?</a>
+                        <a href="/admin/forget-password">Forget Password?</a>
                       </div>
                     </div>
                     <div class="row">
