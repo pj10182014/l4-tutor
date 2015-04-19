@@ -46,6 +46,10 @@
                       </div>
                     </div>
                     <div class="row">
+                      <label class="col-lg-8 col-md-offset-4 padding-left-0">
+                      <input type="checkbox" name="remember" value="1"/> Remember me </label>
+                    </div>
+                    <div class="row">
                       <div class="col-lg-8 col-md-offset-4 padding-left-0">
                         <a href="/forget-password">Forget Password?</a>
                       </div>
