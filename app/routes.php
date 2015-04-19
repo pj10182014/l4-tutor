@@ -12,7 +12,12 @@
 */
 //print $password = Hash::make('password');
 //print App::environment();
-Route::controller('student','StudentController');
 Route::controller('ajax','AjaxController');
+Route::get("/login",array('uses'=>"LoginController@getLoginPage"));
+Route::get("/registration",array('uses'=>"LoginController@getRegistrationPage"));
+Route::get("/forget-password",array('uses'=>"LoginController@getForgetPasswordPage"));
 Route::controller('admin','AdminController');
+Route::controller('course','CourseController');
+Route::controller('tutor','TutorController');
+Route::controller('dashboard','DashboardController');
 Route::controller('/','HomeController');
