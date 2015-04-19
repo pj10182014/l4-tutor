@@ -17,7 +17,6 @@
       <div class="container">
         <ul class="breadcrumb">
             <li><a href="index.html">Home</a></li>
-            <li><a href="#">Pages</a></li>
             <li class="active">Login</li>
         </ul>
         <!-- BEGIN SIDEBAR & CONTENT -->

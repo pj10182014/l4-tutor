@@ -13,8 +13,7 @@
       <div class="container">
         <ul class="breadcrumb">
             <li><a href="index.html">Home</a></li>
-            <li><a href="#">Pages</a></li>
-            <li class="active">Create new account</li>
+            <li class="active">Registration</li>
         </ul>
         <!-- BEGIN SIDEBAR & CONTENT -->
         <div class="row margin-bottom-40">
