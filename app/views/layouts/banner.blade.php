@@ -33,19 +33,19 @@
     <div class="header-navigation pull-right font-transform-inherit">
       <ul>
         <li>
-          <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="#">HOME</a>
+          <a class="dropdown-toggle" data-target="#" href="/">HOME</a>
         </li>
         <li>
-          <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="#">COURSE</a>
+          <a class="dropdown-toggle" data-target="#" href="/course">COURSE</a>
         </li>
         <li>
-          <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="#">TUTOR</a>  
+          <a class="dropdown-toggle" data-target="#" href="/tutor">TUTOR</a>  
         </li>
         <li>
-          <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="#">DASHBOARD</a>
+          <a class="dropdown-toggle" data-target="#" href="/dashboard">DASHBOARD</a>
         </li>
-        <li><a href="" target="_blank">CONTACT</a></li>
-        <li><a href="" target="_blank">ABOUT</a></li>
+        <li><a href="/contact">CONTACT</a></li>
+        <li><a href="/about">ABOUT</a></li>
         <!-- BEGIN TOP SEARCH -->
         <li class="menu-search">
           <span class="sep"></span>
