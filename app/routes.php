@@ -15,6 +15,7 @@
 Route::controller('ajax','AjaxController');
 Route::get("/login",array('uses'=>"LoginController@getLoginPage"));
 Route::POST("/login",array('uses'=>"LoginController@postLogin"));
+Route::get("/logout",array('uses'=>"LoginController@getLogout"));
 Route::get("/registration",array('uses'=>"LoginController@getRegistrationPage"));
 Route::get("/forget-password",array('uses'=>"LoginController@getForgetPasswordPage"));
 Route::controller('admin','AdminController');

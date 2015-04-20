@@ -14,8 +14,8 @@
             @if(Auth::check())
             <div class="col-md-6 col-sm-6 additional-nav">
                 <ul class="list-unstyled list-inline pull-right">
-                    <li><a href="/login">name</a></li>
-                    <li><a href="/registration">Logout</a></li>
+                    <li><a href="/dashboard">{{Auth::user()->firstname." ".Auth::user()->lastname}}</a></li>
+                    <li><a href="/logout">Logout</a></li>
                 </ul>
             </div>
             @else

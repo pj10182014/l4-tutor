@@ -10,7 +10,7 @@ class LoginController extends BaseController {
     public function getLoginPage()
     {   
 		if(Auth::check()){
-			return View::make('notification.login-notification', array('loginInformation' => 'you already login stupid, page will redirect in few seconds'));
+			return View::make('login');
 		}else{
 			return View::make('login');
 		}
@@ -34,6 +34,12 @@ class LoginController extends BaseController {
         }
         // return View::make('notification.login-notification', array('loginInformation' => 'Login Error<br>Please check your username / password.<br>Make sure you have actived your account. <br>Thank you'));
         return "Check password";
+    }
+
+    public function getLogout()
+    {
+        Auth::logout();
+        return Redirect::intended('/');
     }
 
 }
