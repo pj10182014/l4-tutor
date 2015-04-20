@@ -32,17 +32,17 @@
             <div class="content-form-page">
               <div class="row">
                 <div class="col-md-7 col-sm-7">
-                  <form class="form-horizontal form-without-legend" role="form">
+                  <form class="form-horizontal form-without-legend" role="form" action="/login" method="post">
                     <div class="form-group">
-                      <label for="email" class="col-lg-4 control-label">Email <span class="require">*</span></label>
+                      <label for="email" class="col-lg-4 control-label">Username <span class="require">*</span></label>
                       <div class="col-lg-8">
-                        <input type="text" class="form-control" id="email">
+                        <input type="text" class="form-control" id="email" name="username">
                       </div>
                     </div>
                     <div class="form-group">
                       <label for="password" class="col-lg-4 control-label">Password <span class="require">*</span></label>
                       <div class="col-lg-8">
-                        <input type="text" class="form-control" id="password">
+                        <input type="password" class="form-control" id="password" name="password">
                       </div>
                     </div>
                     <div class="row">
@@ -59,7 +59,7 @@
                         <button type="submit" class="btn btn-primary">Login</button>
                       </div>
                     </div>
-                    <div class="row">
+                    <!-- <div class="row">
                       <div class="col-lg-8 col-md-offset-4 padding-left-0 padding-top-10 padding-right-30">
                         <hr>
                         <div class="login-socio">
@@ -72,7 +72,7 @@
                             </ul>
                         </div>
                       </div>
-                    </div>
+                    </div> -->
                   </form>
                 </div>
                 <div class="col-md-4 col-sm-4 pull-right">

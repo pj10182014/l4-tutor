@@ -26,7 +26,6 @@ class LoginController extends BaseController {
     }
 
     public function postLogin(){
-    
         $remember = array_key_exists('remember',$_POST);
 
         if (Auth::attempt(array('user_name' => $_POST['username'], 'password' => $_POST['password'], 'activated' => 1),$remember))
