@@ -31,21 +31,27 @@
                     <fieldset>
                       <legend>Your personal details</legend>
                       <div class="form-group">
+                        <label for="username" class="col-lg-4 control-label">Username <span class="require">*</span></label>
+                        <div class="col-lg-8">
+                          <input type="text" class="form-control" name="username">
+                        </div>
+                      </div>
+                      <div class="form-group">
                         <label for="firstname" class="col-lg-4 control-label">First Name <span class="require">*</span></label>
                         <div class="col-lg-8">
-                          <input type="text" class="form-control" id="firstname">
+                          <input type="text" class="form-control" name="firstname">
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="lastname" class="col-lg-4 control-label">Last Name <span class="require">*</span></label>
                         <div class="col-lg-8">
-                          <input type="text" class="form-control" id="lastname">
+                          <input type="text" class="form-control" name="lastname">
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="email" class="col-lg-4 control-label">Email <span class="require">*</span></label>
                         <div class="col-lg-8">
-                          <input type="text" class="form-control" id="email">
+                          <input type="text" class="form-control" name="email">
                         </div>
                       </div>
                     </fieldset>
@@ -54,7 +60,7 @@
                       <div class="form-group">
                         <label for="password" class="col-lg-4 control-label">Password <span class="require">*</span></label>
                         <div class="col-lg-8">
-                          <input type="text" class="form-control" id="password">
+                          <input type="text" class="form-control" name="password">
                         </div>
                       </div>
                       <div class="form-group">
@@ -62,17 +68,6 @@
                         <div class="col-lg-8">
                           <input type="text" class="form-control" id="confirm-password">
                         </div>
-                      </div>
-                    </fieldset>
-                    <fieldset>
-                      <legend>Newsletter</legend>
-                      <div class="checkbox form-group">
-                        <label>
-                          <div class="col-lg-4 col-sm-4">Singup for Newsletter</div>
-                          <div class="col-lg-8 col-sm-8">
-                            <input type="checkbox">
-                          </div>
-                        </label>
                       </div>
                     </fieldset>
                     <div class="row">
@@ -115,6 +110,30 @@
     Layout.initUniform();
     Layout.initTwitter();
     Layout.initFixHeaderWithPreHeader();
+
+    $(".btn-primary").click(function(e){
+      e.preventDefault();
+
+      var username = $("input[name='username']").val();
+      var firstname = $("input[name='firstname']").val();
+      var lastname = $("input[name='lastname']").val();
+      var email = $("input[name='email']").val();
+      var password = $("input[name='password']").val();
+
+      $.ajax({
+        method: "POST",
+        url: "/registration",
+        dataType: "json",
+        data: {username: username,
+               firstname:firstname,
+               lastname:lastname,
+               email:email,
+               password:password},
+        success: function(data){
+
+        }
+      });
+    });
   });
  </script>
  @stop

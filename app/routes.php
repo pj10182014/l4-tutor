@@ -13,11 +13,17 @@
 //print $password = Hash::make('password');
 //print App::environment();
 Route::controller('ajax','AjaxController');
+
 Route::get("/login",array('uses'=>"LoginController@getLoginPage"));
 Route::POST("/login",array('uses'=>"LoginController@postLogin"));
+
 Route::get("/logout",array('uses'=>"LoginController@getLogout"));
+
 Route::get("/registration",array('uses'=>"LoginController@getRegistrationPage"));
+Route::POST("/registration",array('uses'=>"LoginController@postRegister"));
+
 Route::get("/forget-password",array('uses'=>"LoginController@getForgetPasswordPage"));
+
 Route::controller('admin','AdminController');
 Route::controller('course','CourseController');
 Route::controller('tutor','TutorController');

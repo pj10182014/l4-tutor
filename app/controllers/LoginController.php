@@ -16,15 +16,6 @@ class LoginController extends BaseController {
 		}
     }
 
-    public function getRegistrationPage(){
-    	return View::make('registration');
-    }
-
-    public function getForgetPasswordPage()
-    {
-      return View::make('forgetPassword');
-    }
-
     public function postLogin(){
         $remember = array_key_exists('remember',$_POST);
 
@@ -35,6 +26,21 @@ class LoginController extends BaseController {
         // return View::make('notification.login-notification', array('loginInformation' => 'Login Error<br>Please check your username / password.<br>Make sure you have actived your account. <br>Thank you'));
         return "Check password";
     }
+
+    public function getRegistrationPage(){
+    	return View::make('registration');
+    }
+
+    public function postRegister(){
+        var_dump($_POST);
+    }
+
+    public function getForgetPasswordPage()
+    {
+      return View::make('forgetPassword');
+    }
+
+
 
     public function getLogout()
     {
