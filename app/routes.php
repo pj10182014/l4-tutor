@@ -13,6 +13,7 @@
 //print $password = Hash::make('password');
 //print App::environment();
 Route::controller('ajax','AjaxController');
+Route::controller('login','LoginController');
 
 Route::get("/login",array('uses'=>"LoginController@getLoginPage"));
 Route::POST("/login",array('uses'=>"LoginController@postLogin"));
