@@ -23,6 +23,8 @@ Route::get("/logout",array('uses'=>"LoginController@getLogout"));
 Route::get("/registration",array('uses'=>"LoginController@getRegistrationPage"));
 Route::POST("/registration",array('uses'=>"LoginController@postRegister"));
 
+Route::get("/active",array('uses'=>"LoginController@getActive"));
+
 Route::get("/forget-password",array('uses'=>"LoginController@getForgetPasswordPage"));
 
 Route::controller('admin','AdminController');

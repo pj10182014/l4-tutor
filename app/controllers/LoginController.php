@@ -32,6 +32,9 @@ class LoginController extends BaseController {
     }
 
     public function postRegister(){
+        $response = array();
+        $boolean   = true;
+
         $user_name = $_POST['username'];
         $firstname = $_POST['firstname'];
         $lastname = $_POST['lastname'];
@@ -40,11 +43,13 @@ class LoginController extends BaseController {
 
 
         $code = str_random(60);
-        $url_activate = URL::action('LoginController@getActive');
+        $url_activate = URL::to('/');
+        $url_activate .= "/activate";
         $url_activate .= "?code=".$code;
         $url_activate .= "&user=".$user_name;
-        
-        $user = User::create(array(
+
+        try {
+            $user = User::create(array(
                 'user_name' => $user_name,
                 'firstname' => $firstname,
                 'lastname'  => $lastname,
@@ -53,15 +58,28 @@ class LoginController extends BaseController {
                 'code'      => $code,
                 'activated' => 0
             ));
-
-        if ($user->save())
-        {
-            Mail::send('email.account-activation', array('link' => $url_activate, 'username' => $user_name), function($m) use($user){
-                    $m->to($user->email, $user->username)->subject('Activation Email');
-            });
+            $user->save();
+        } catch (Exception $e) {
+            $response['info'] = "fail";
+            $boolean = false;
         }
-        // return Redirect::action('AdminController@getAccountActive');
-        echo "register successful";
+
+        if($boolean){
+            try {
+                Mail::send('email.account-activation', array('link' => $url_activate, 'username' => $user_name), function($m) use($user){
+                        $m->to($user->email, $user->username)->subject('Activation Email');
+                });
+            } catch (Exception $e) {
+                $response['info'] = "mail";
+                $boolean = false;
+            }
+        }
+
+        if($boolean){
+            $response['info'] = "success";
+        }
+
+        echo json_encode($response);
     }
 
     public function getActive()

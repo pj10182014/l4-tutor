@@ -22,7 +22,7 @@
           <!-- END SIDEBAR -->
 
           <!-- BEGIN CONTENT -->
-          <div class="col-md-9 col-sm-9">
+          <div class="col-md-9 col-sm-9 sub-container">
             <h1>Create an account</h1>
             <div class="content-form-page">
               <div class="row">
@@ -130,7 +130,19 @@
                email:email,
                password:password},
         success: function(data){
-
+          switch(data['info']){
+            case 'success':
+              var info = "User create successful.";
+              break;
+            case 'fail':
+              var info = "User create fail.";
+              break;
+            case 'mail':
+              var info = "Cannot send email.";
+              break;
+          }
+          $('.sub-container').empty();
+          $('.sub-container').append('<h1>'+info+'</h1>')
         }
       });
     });
