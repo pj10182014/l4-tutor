@@ -17,14 +17,19 @@ class LoginController extends BaseController {
     }
 
     public function postLogin(){
+        $response = [];
         $remember = array_key_exists('remember',$_POST);
 
-        if (Auth::attempt(array('user_name' => $_POST['username'], 'password' => $_POST['password'], 'activated' => 1),$remember))
-        {
-            return Redirect::intended('/');
+        try {
+            if (Auth::attempt(array('user_name' => $_POST['username'], 'password' => $_POST['password'], 'activated' => 1),$remember)){
+                $response['info'] = 'success';
+            }else{
+                $response['info'] = 'check password';
+            }           
+        } catch (Exception $e) {
+            $response['info'] = 'fail';
         }
-        // return View::make('notification.login-notification', array('loginInformation' => 'Login Error<br>Please check your username / password.<br>Make sure you have actived your account. <br>Thank you'));
-        return "Check password";
+        echo json_encode($response);
     }
 
     public function getRegistrationPage(){

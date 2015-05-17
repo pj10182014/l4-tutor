@@ -32,7 +32,7 @@
             <div class="content-form-page">
               <div class="row">
                 <div class="col-md-7 col-sm-7">
-                  <form class="form-horizontal form-without-legend" role="form" action="/login" method="post">
+                  <form class="form-horizontal form-without-legend" role="form">
                     <div class="form-group">
                       <label for="email" class="col-lg-4 control-label">Username <span class="require">*</span></label>
                       <div class="col-lg-8">
@@ -106,36 +106,33 @@
     Layout.initTwitter();
     Layout.initFixHeaderWithPreHeader();
 
-		//if url has #register #register-btn will auto click
-		var pathname = window.location.href;
-		var n = pathname.indexOf("#register");
-		if(n > 0){
-			$('#register-btn').click();
-		}
+    $(".btn-primary").click(function(e){
+      e.preventDefault();
 
-		//Username Sign up input forcus out
-		$("#username-signup").focusout(function() {
-			var username = $('#username-signup').val();
-			$.ajax({
-				type: 'POST',
-				url: "/ajax/validate-username",
-				data: {username: username},
-				dataType: "json",
-				success: function( data ){
-					if (data['exist'])
-					{
-						$('#username-signup').val('');
-						$('#username-signup').attr('placeholder', 'User Exists');
-						$('#username-signup').addClass('error-placeholder');	
-					};
-				}
-			});  //end ajax
-		});  //end username-signup focusout
+      var username = $("input[name='username']").val();
+      var password = $("input[name='password']").val();
 
-		$("#username-signup").focusin(function() {
-			$("#username-signup").removeClass('error-placeholder');
-			$('#username-signup').attr('placeholder', 'Username');
-		});  //end username-signup forcusin
+      $.ajax({
+        method: "POST",
+        url: "/login",
+        dataType: "json",
+        data: {username: username,
+               password:password},
+        success: function(data){
+            switch(data['info']){
+            case 'success':
+              var info = "Login successful.";
+              break;
+            case 'fail':
+              var info = "User not in database";
+              break;
+            case 'check password':
+              var info = "Please check password and username";
+              break;
+          }
+        }
+      });
+    });
 
 	}); //end document ready
 </script>
