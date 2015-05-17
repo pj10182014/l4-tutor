@@ -70,21 +70,20 @@ class LoginController extends BaseController {
         }
 
         if($boolean){
-            try {
-                Mail::send('email.account-activation', array('link' => $url_activate, 'username' => $user_name), function($m) use($user){
-                        $m->to($user->email, $user->username)->subject('Activation Email');
-                });
-            } catch (Exception $e) {
-                $response['info'] = "mail";
-                $boolean = false;
-            }
-        }
-
-        if($boolean){
             $response['info'] = "success";
         }
 
         echo json_encode($response);
+        //if($boolean){
+            //try {
+                Mail::send('email.account-activation', array('link' => $url_activate, 'username' => $user_name), function($m) use($user){
+                        $m->to($user->email, $user->username)->subject('Activation Email');
+                });
+            //} catch (Exception $e) {
+                //$response['info'] = "mail";
+                //$boolean = false;
+            //}
+        //}   
     }
 
     public function getActive()

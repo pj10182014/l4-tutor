@@ -27,7 +27,9 @@
             <div class="content-form-page">
               <div class="row">
                 <div class="col-md-7 col-sm-7">
-                  <form class="form-horizontal" role="form">
+                  <div class="info-container">
+                  </div>
+                  <form id="register-form" class="form-horizontal" role="form">
                     <fieldset>
                       <legend>Your personal details</legend>
                       <div class="form-group">
@@ -110,7 +112,7 @@
     Layout.initUniform();
     Layout.initTwitter();
     Layout.initFixHeaderWithPreHeader();
-
+    
     $(".btn-primary").click(function(e){
       e.preventDefault();
 
@@ -119,7 +121,6 @@
       var lastname = $("input[name='lastname']").val();
       var email = $("input[name='email']").val();
       var password = $("input[name='password']").val();
-
       $.ajax({
         method: "POST",
         url: "/registration",
@@ -133,6 +134,8 @@
           switch(data['info']){
             case 'success':
               var info = "User create successful.";
+              var details = "dfsdfs";
+              var link = "http://google.ca";
               break;
             case 'fail':
               var info = "User create fail.";
@@ -142,7 +145,9 @@
               break;
           }
           $('.sub-container').empty();
-          $('.sub-container').append('<h1>'+info+'</h1>')
+          $('.sub-container').append('<h3>'+info+'</h3>');
+          $('.sub-container').append('<p>'+details+'</p>');
+          $('.sub-container').append('<p>please click <a href='+link +'>here</a> to redirect</p>');
         }
       });
     });
