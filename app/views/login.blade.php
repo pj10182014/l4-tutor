@@ -27,7 +27,7 @@
           <!-- END SIDEBAR -->
           
           <!-- BEGIN CONTENT -->
-          <div class="col-md-9 col-sm-9">
+          <div class="col-md-9 col-sm-9 sub-container">
             <h1>Login</h1>
             <div class="content-form-page">
               <div class="row">
@@ -130,6 +130,14 @@
               var info = "Please check password and username";
               break;
           }
+            $('.sub-container').empty();
+            $('.sub-container').append('<h3>'+info+'</h3>');
+            $('.sub-container').append('<p>Redirecting to home in 5 seconds</p>');
+            
+            var rootURL = window.location.origin;
+            window.setTimeout(function(){
+                window.location.href = rootURL;
+            }, 5000);
         }
       });
     });
