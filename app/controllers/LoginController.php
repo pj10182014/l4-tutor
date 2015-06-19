@@ -33,7 +33,8 @@ class LoginController extends BaseController {
     }
 
     public function getRegistrationPage(){
-    	return View::make('registration');
+        mail('dpan218@gmail.com', 'My Subject', "test test");
+    	//return View::make('registration');
     }
 
     public function postRegister(){
