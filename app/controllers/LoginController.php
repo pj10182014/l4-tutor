@@ -53,7 +53,7 @@ class LoginController extends BaseController {
         $url_activate .= "?code=".$code;
         $url_activate .= "&user=".$user_name;
 
-        try {
+        /*try {
             $user = User::create(array(
                 'user_name' => $user_name,
                 'firstname' => $firstname,
@@ -71,14 +71,32 @@ class LoginController extends BaseController {
 
         if($boolean){
             $response['info'] = "success";
-        }
+        }*/
 
         echo json_encode($response);
+        $value = json_encode(array('link' => $url_activate, 'username' => $user_name));
+        try {
+            $notification = notification::create(array(
+                'name' => $firstname.$lastname,
+                'email' => $email,
+                'title'  => "Activation Email",
+                'template'  => 'email.account-activation',
+                'value' => $value,
+                'status'  => '0',
+                'resend'      => 0
+            ));
+            $notification->save();
+        } catch (Exception $e) {
+            $response['info'] = "fail";
+            $boolean = false;
+        }
+
+        die;
         //if($boolean){
             //try {
-                Mail::send('email.account-activation', array('link' => $url_activate, 'username' => $user_name), function($m) use($user){
-                        $m->to($user->email, $user->username)->subject('Activation Email');
-                });
+               // Mail::send('email.account-activation', array('link' => $url_activate, 'username' => $user_name), function($m) use($user){
+                        //$m->to($user->email, $user->username)->subject('Activation Email');
+                //});
             //} catch (Exception $e) {
                 //$response['info'] = "mail";
                 //$boolean = false;
