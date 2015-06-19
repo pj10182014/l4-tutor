@@ -33,8 +33,12 @@ class LoginController extends BaseController {
     }
 
     public function getRegistrationPage(){
-        mail('dpan218@gmail.com', 'My Subject', "test test");
-    	//return View::make('registration');
+        //var_dump(mail('pdd830218@gmail.com', 'My Subject', "test test"));
+    	return View::make('registration');
+/*        
+        Mail::send('email.account-activation', array('link' => "fds", 'username' => "fdsf"), function($m){
+                        $m->to("dpan218@gmail.com", "pan")->subject('Activation Email');
+                });*/
     }
 
     public function postRegister(){
@@ -54,7 +58,7 @@ class LoginController extends BaseController {
         $url_activate .= "?code=".$code;
         $url_activate .= "&user=".$user_name;
 
-        /*try {
+        try {
             $user = User::create(array(
                 'user_name' => $user_name,
                 'firstname' => $firstname,
@@ -72,7 +76,7 @@ class LoginController extends BaseController {
 
         if($boolean){
             $response['info'] = "success";
-        }*/
+        }
 
         echo json_encode($response);
         $value = json_encode(array('link' => $url_activate, 'username' => $user_name));
@@ -92,17 +96,17 @@ class LoginController extends BaseController {
             $boolean = false;
         }
 
-        die;
-        //if($boolean){
-            //try {
-               // Mail::send('email.account-activation', array('link' => $url_activate, 'username' => $user_name), function($m) use($user){
-                        //$m->to($user->email, $user->username)->subject('Activation Email');
-                //});
-            //} catch (Exception $e) {
-                //$response['info'] = "mail";
-                //$boolean = false;
-            //}
-        //}   
+        //die;
+        /*if($boolean){
+            try {
+               Mail::later(5,'email.account-activation', array('link' => $url_activate, 'username' => $user_name), function($m) use($user){
+                        $m->to($user->email, $user->username)->subject('Activation Email');
+                });
+            } catch (Exception $e) {
+                $response['info'] = "mail";
+                $boolean = false;
+            }
+        }   */
     }
 
     public function getActive()

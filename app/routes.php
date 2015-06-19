@@ -15,6 +15,7 @@
 Route::controller('ajax','AjaxController');
 Route::controller('login','LoginController');
 
+
 Route::get("/login",array('uses'=>"LoginController@getLoginPage"));
 Route::POST("/login",array('uses'=>"LoginController@postLogin"));
 
@@ -22,6 +23,8 @@ Route::get("/logout",array('uses'=>"LoginController@getLogout"));
 
 Route::get("/registration",array('uses'=>"LoginController@getRegistrationPage"));
 Route::POST("/registration",array('uses'=>"LoginController@postRegister"));
+
+Route::get("/notification",array('uses'=>"NotificationController@getNotification"));
 
 Route::get("/active",array('uses'=>"LoginController@getActive"));
 
