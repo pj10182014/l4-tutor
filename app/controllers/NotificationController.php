@@ -7,35 +7,39 @@
 //                      );
 //			echo count(Mail::failures());
 
-//			make a notification model to get information from database;
-//			Select * from notification table where status != 1 && resend <= 4;
-
+          //Select * from notification table where status != 1 && resend <= 4;
             /* two ways to get data from the notification table */
             //use query builder
             //This one, if var_dump before the loop we can see the values of the rows
-            $notification_data1 = DB::table('notification')->where('status', '=', 0)->get();
+            $notification_data1 = DB::table('notification')->where('status', '=', 0)->where('resend', '<=', '4')->get();
             foreach($notification_data1 as $notification){
-                Mail::send($notification->template, array('link' => "link", 'username' => "username"), function($m) use($notification){
+                $url = json_decode($notification->value)->link;
+                $username = json_decode($notification->value)->username;
+
+                Mail::send($notification->template, array('link' => $url, 'username' => $username), function($m) use($notification){
                     $m->to($notification->email, $notification->name)->subject('Activation Email');}
                 );
-                echo count(Mail::failures());
+              //send email;
+              //if(count mail failures = 0){
+              //	update the notification table stauts;
+              //}else{
+              //	update the notification tabel resend;
+              //}
+                if(count(Mail::failures()) == 0){
+                    DB::table('notification')->update(array('status' => 1));
+                    echo 'Status updated';
+                }else{
+                    $resend = $notification->resend++;
+                    DB::table('notification')->update(array('resend' => $resend));
+                    echo 'resend updated';
+                }
             }
             //use eloquent
             //This one, if var_dump before the loop, we get errors
-            $notification_data2 = Notification::where('status', '=', 0)->get();
-            foreach($notification_data2 as $notification){
-                echo $notification->email . '<br>';
-            }
-
-
-//			send email;
-//			if(count mail failures = 0){
-//				update the notification table stauts;
-//			}else{
-//				update the notification tabel resend;
-//			}
-
-
+//            $notification_data2 = Notification::where('status', '=', 0)->get();
+//            foreach($notification_data2 as $notification){
+//                echo $notification->email . '<br>';
+//            }
 		}
 	}
 ?>
