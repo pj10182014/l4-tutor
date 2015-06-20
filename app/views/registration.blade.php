@@ -134,7 +134,7 @@
           switch(data['info']){
             case 'success':
               var info = "User create successful.";
-              var details = "dfsdfs";
+              var details = "details";
               var link = "http://google.ca";
               break;
             case 'fail':

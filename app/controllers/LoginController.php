@@ -81,8 +81,8 @@ class LoginController extends BaseController {
         echo json_encode($response);
         $value = json_encode(array('link' => $url_activate, 'username' => $user_name));
         try {
-            $notification = notification::create(array(
-                'name' => $firstname.$lastname,
+            $notification = Notification::create(array(
+                'name' => $firstname . ' ' . $lastname,
                 'email' => $email,
                 'title'  => "Activation Email",
                 'template'  => 'email.account-activation',
