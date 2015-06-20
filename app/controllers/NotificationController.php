@@ -29,7 +29,7 @@
                     DB::table('notification')->update(array('status' => 1));
                     echo 'Status updated';
                 }else{
-                    $resend = $notification->resend++;
+                    $resend = $notification->resend + 1;
                     DB::table('notification')->update(array('resend' => $resend));
                     echo 'resend updated';
                 }
