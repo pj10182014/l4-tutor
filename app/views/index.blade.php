@@ -8,7 +8,7 @@
 @stop
 @section('contents')
 	<body class='corporate'>
-    @include('sliders.homepageSlider')
+    @include('sliders.homepageSlider') 
 @stop
 
 @section('js')
